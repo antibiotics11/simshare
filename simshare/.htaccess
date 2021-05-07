@@ -1,15 +1,19 @@
-# Apache HTTP Server 2.4 기준 htaccess 파일입니다
+### Apache htaccess 파일
+### Apache HTTP Server 2.4 에서 작성되었습니다.
 
 <IfModule mod_rewrite.c>
 
 RewriteEngine on
 
-# https 리디렉션 처리
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+### https 리디렉션 처리 => 가상호스트에 설정되지 않았다면 주석 해제
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# index.php 생략
+### index.php 생략
 RewriteCond %{THE_REQUEST} ^.*/index\.php 
 RewriteRule ^(.*)index.php$ /$1 [R=301,L]
 
+### 에러 처리 => 가상호스트에 설정되지 않았다면 주석 해제
+#ErrorDocument 403 /?error=403
+#ErrorDocument 404 /?error=404
 </IfModule>

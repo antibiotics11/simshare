@@ -28,26 +28,39 @@
 	
 	if (is_uploaded_file($_FILES['clientfile']['tmp_name'])) {
 		
+		// 기한 만료된 파일 삭제
+		include_once './auto_del_file.php';
+		autodel();
+		
 		// 업로드된 파일 정보 정리
 		$tmp_filename = $_FILES['clientfile']['name']; // 파일명
 		$file_name = $_FILES['clientfile']['name'];
 		$file_size = ($_FILES['clientfile']['size'] / (int)1000000); // 파일 용량 
-		$file_ext = $_FILES['clientfile']['type']; // 파일 확장자 
 		$selected_ext = (int)$_POST['compress']; // 압축 여부
 		$selected_alg = (int)$_POST['encrypt']; // 암호화 여부
 		$fileloc = '../../clientfiles/';
+		
+		// 파일 확장자 확인
+		$file_ext_tmp = explode(".", (string)$file_name);
+		$file_ext_tmp = array_reverse($file_ext_tmp);
+		$file_ext = $file_ext_tmp[0];
+		$file_ext = strtolower($file_ext);
 		
 		// 용량 2gb 초과시 종료
 		if ((int)$file_size > (int)2000) {
 			$message = "File is too large";
 			errorpopup($message);
+			exit;
 		}
 		
-		// 암호화 선택시 패스워드 일치하지 않으면 종료
+		// 암호화 선택시 패스워드 처리
 		if ($selected_alg) {
 			if ((string)$_POST['passwd'] != (string)$_POST['checksum']) {
-				$message = "Password does not match"
+				$message = "Password does not match";
 				errorpopup($message);
+				exit;
+			} else {
+				$userpasswd = base64_encode((string)md5((string)$_POST['passwd']));
 			}
 		}
 		
@@ -55,13 +68,15 @@
 		if ((int)$_FILES['clientfile']['error']) {
 			$message = "Error occured. Please try again.";
 			errorpopup($message);
+			exit;
 		}
 		
 		// 허용되지 않은 확장자면 실행 종료
-		include './ext_allowed.php';
+		include_once './ext_allowed.php';
 		if (!in_array($file_ext, $ext_allowed)) {
 			$message = $file_ext." files not allowed";
 			errorpopup($message);
+			exit;
 		}
 		
 		// 파일 랜덤 코드 생성, 중복 방지
@@ -75,32 +90,36 @@
 			}
 		}
 		
+		// 파일을 clientfiles 디렉터리로 이동
 		$filecreated = $fileloc."/".$filecode;
 		move_uploaded_file($_FILES['clientfile']['tmp_name'], $filecreated);
 		
-		// 파일 압축 => pclzip 라이브러리 활용
+		// 파일 압축 => zip
 		if ((int)$selected_ext) {
-			include './pclzip.lib.php';
-			$zipfile = new PclZip($filecode);
-			$createfile = $zipfile->create($filecreated);
+			shell_exec("zip -r ".$fileloc.$filecode." ".$filecreated);
+			rename ($filecreated.".zip", $filecreated);
 		}
 		
 		// 파일 암호화 => mcrypt 라이브러리 활용
 		if ((int)$selected_alg) {
 			$filecontents = file_get_contents($filecreated);
 			
-			$iv = "16byte 초기값";
-			$key = "32byte key";
-			$enc = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $filecontents, MCRYPT_MODE_CBC, $iv);
-			
-				$fp = fopen($dirlist[$i], 'r+');
-				fwrite($fp, $encrypted);
-				fclose($fp);
+			#$iv = "16byte 초기값";
+			#$key = "32byte key";
+			#$enc = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $filecontents, MCRYPT_MODE_CBC, $iv);
+
 		}
 		
-		// 파일 코드 및 만료일 파라미터로 전달
+		// 파일 코드 및 만료일 db에 저장하고 파라미터로 사용자에게 전달
+		
 		$timestamp = strtotime("+1 week");
-		$expdate = date("Ymd", $timestamp);
+		$expdate = date("Y-m-d", $timestamp);
+		
+		include './db.php';
+		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
+		$upload_sql = "insert into clientfiles values('$filecode','$expdate','$userpasswd');";
+		$upload_ok = mysqli_query($conn, $upload_sql);
+
 		header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);
 		
 	} else {

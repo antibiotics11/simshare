@@ -1,18 +1,19 @@
 <!-- 파일 업로드 페이지 -->
 
 <div id = "uploadform">
+<!-- javascript -->
 <script type = "text/javascript">
 
 	// 패스워드 입력창 출력 
 	function showinputpasswd(value) {
 		if (value == 1) {
 			document.getElementById("inputpasswd").style.display = "inline-block";
-			$("[name=passwd]").attr("required" , true);
-			$("[name=checksum]").attr("required" , true);
+			document.getElementById("passwd").setAttribute("required", true);
+			document.getElementById("checksum").setAttribute("required", true);
 		} else {
 			document.getElementById("inputpasswd").style.display = "none";
-			$("[name=passwd]").attr("required" , false);
-			$("[name=checksum]").attr("required" , false);
+			document.getElementById("passwd").removeAttribute("required");
+			document.getElementById("checksum").removeAttribute("required");
 		}
 	}
 	
@@ -40,6 +41,8 @@
 		<select name = "compress">
 			<option value = "0"> None </option>
 			<option value = "1"> To zip </option>
+			<!-- tar.gz 옵션은 현재 사용하지 않지만 추후 업데이트 계획 -->
+			<!-- <option value = '1'> To tar.gz </option> -->
 		</select>
 		</td>
 	</tr>
@@ -47,8 +50,8 @@
 	</div>
 	
 	<div id = "inputpasswd" style = "display: none;">
-		<input type = "password" name = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required = "required">
-		<input type = "checksum" name = "checksum" minlength = "4" maxlength = "10" placeholder = "Enter Password again" required = "required">
+		<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password">
+		<input type = "password" name = "checksum" id = "checksum" minlength = "4" maxlength = "10" placeholder = "Password">
 	</div>
 	
 	<div style = "display: block;">

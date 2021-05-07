@@ -41,13 +41,13 @@
 	<div id = "contents">
 	<?php
 		if (isset($_GET['act'])) {
-			require_once __DIR__ . '/main/pages/'.$_GET['act'].'.php';
+			require_once './main/pages/'.$_GET['act'].'.php';
 		} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
-			require_once __DIR__ . '/main/pages/checkuploaded.php';
+			require_once './main/pages/checkuploaded.php';
 		} else if (isset($_GET['error'])) {
-			require_once __DIR__ . '/main/errors/'.$_GET['error'].'.html';
+			require_once './main/errors/'.$_GET['error'].'.html';
 		} else {
-			require_once __DIR__ . '/main/pages/select_action.html';
+			require_once './main/pages/select_action.html';
 		}
 	?>
 	</div>
