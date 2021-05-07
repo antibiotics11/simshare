@@ -1,0 +1,7 @@
+사용된 이미지 파일 출처
+
+"share.png", "share.svg" from flaticon:
+https://www.flaticon.com/free-icon/share_1828609?term=share&related_id=1828609
+
+"ksnu.png" from Kunsan National University:
+https://www.kunsan.ac.kr

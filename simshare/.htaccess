@@ -1,0 +1,15 @@
+# Apache HTTP Server 2.4 기준 htaccess 파일입니다
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+# https 리디렉션 처리
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# index.php 생략
+RewriteCond %{THE_REQUEST} ^.*/index\.php 
+RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+
+</IfModule>

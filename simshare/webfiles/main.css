@@ -1,0 +1,207 @@
+/* 메인 스타일시트입니다. */
+
+body {
+	background-color: #f7f8f9;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+/* 헤더 영역 */
+
+#header {
+	background-color: #f1f3f4;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+#header table {
+	margin-left: 15%;
+}
+
+.simshare_icon {
+	text-align: left;
+}
+
+.simshare_icon img {
+	height: 50px;
+}
+
+.simshare_title {
+	text-align: left;
+	margin-left: 20px;
+}
+
+.simshare_title h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 250%;
+}
+
+.simshare_title h1 a {
+	color: black;
+	text-decoration: none;
+	cursor: default;
+}
+
+/* 콘텐츠 영역 */
+
+#contents {
+	padding-top: 120px;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+#contents table {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+#recv_file {
+	cursor: pointer;
+	background-color: #f1f3f4;
+	border-radius: 40px 40px;
+	height: 100%;
+	margin: 5% 5% 0% 5%;
+}
+
+#recv_file:hover {
+	background-color: #dbe2e7;
+}
+
+#send_file {
+	cursor: pointer;
+	background-color: #f1f3f4;
+	border-radius: 40px 40px;
+	height: 100%;
+	margin: 5% 5% 5% 5%;
+}
+
+#send_file:hover {
+	background-color: #dbe2e7;
+}
+
+#about {
+	cursor: pointer;
+	background-color: #f1f3f4;
+	border-radius: 40px 40px;
+	height: 100%;
+	margin: 2.5% 5% 5% 5%;
+}
+
+#about:hover {
+	background-color: #dbe2e7;
+}
+
+#contents table p {
+	font-size: 120%;
+}
+
+#recv_file #down {
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 100px solid #4caf50;
+}
+
+#send_file #cross {
+	background: #4caf50;
+	height: 100px;
+	position: relative;
+	width: 20px;
+}
+
+#send_file #cross:after {
+	background: #4caf50;
+	content: "";
+	height: 20px;
+	left: -40px;
+	top: 40px;
+	width: 100px;
+	position: absolute;
+}
+
+#icon_space {
+}
+
+#about #magnifying-glass {
+	font-size: 10em;
+	display: inline-block;
+	width: 0.4em;
+	box-sizing: content-box;
+	box-sizing: content-box;
+	height: 0.4em;
+	border: 0.1em solid #4caf50;
+	position: relative;
+	border-radius: 0.35em;
+}
+	
+#about #magnifying-glass:before {
+	content: "";
+	display: inline-block;
+	right: -0.25em;
+	bottom: -0.1em;
+	border-width: 0;
+	background: #4caf50;
+	width: 0.35em;
+	height: 0.08em;
+	transform: rotate(45deg);
+	position: absolute;
+}
+
+#errorpage, #aboutpage {
+	font-family: 'Montserrat', sans-serif;
+	height: 600px;
+	text-align: center;
+	margin-top: 5%;
+}
+
+#errorpage h2, #aboutpage h2 {
+	color: #4caf50;
+	font-size: 200%;
+}
+
+#errorpage p, #aboutpage p {
+	color: black;
+	font-size: 120%;
+}
+
+.btn1 {
+	border-radius: 60px;
+	font-family: 'Montserrat', sans-serif;
+	color: #4caf50;
+	font-size: 18px;
+	background: #f7f8f9;
+	padding: 10px 20px 10px 20px;
+	border: solid #f1f3f4 1px;
+	text-decoration: none;
+}
+
+.btn1:hover {
+	background: #f1f3f4;
+	text-decoration: none;
+}
+
+/* 푸터 영역 */
+
+#footer {
+	background-color: #f1f3f4;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	position: fixed;
+	padding-top: 2px;
+	height: 90px;
+}
+
+#footer p {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 130%;
+}
+
+#footer p a {
+	text-decoration: none;
+	color: inherit;
+	cursor: default;
+}
