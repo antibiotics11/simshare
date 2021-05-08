@@ -6,8 +6,9 @@ USE `simshare`;
 DROP TABLE IF EXISTS `clientfiles`;
 
 CREATE TABLE `clientfiles` (
-  `code` char(100) NOT NULL,
-  `expdate` date DEFAULT NULL,
-  `passwd` char(100) DEFAULT NULL,
-  PRIMARY KEY (`code`)
+	`code` char(100) NOT NULL,
+	`filename` char(100) NOT NULL,
+	`expdate` date DEFAULT NULL,
+	`passwd` char(100) DEFAULT NULL,
+	PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

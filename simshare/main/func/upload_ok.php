@@ -53,7 +53,7 @@
 			exit;
 		}
 		
-		// 암호화 선택시 패스워드 처리
+		// 암호화 선택시 패스워드 해싱
 		if ($selected_alg) {
 			if ((string)$_POST['passwd'] != (string)$_POST['checksum']) {
 				$message = "Password does not match";
@@ -113,14 +113,14 @@
 			}
 		}
 		
-		// 파일 코드 및 만료일 db에 저장하고 파라미터로 사용자에게 전달
+		// 파일 정보 db에 저장하고 파라미터로 사용자에게 전달
 		{ 
 			$timestamp = strtotime("+1 week");
 			$expdate = date("Y-m-d", $timestamp);
 			
 			include './db.php';
 			$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
-			$upload_sql = "insert into clientfiles values('$filecode','$expdate','$userpasswd');";
+			$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd');";
 			$upload_ok = mysqli_query($conn, $upload_sql);
 
 			header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);

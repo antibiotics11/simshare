@@ -15,7 +15,9 @@
 		// 웹브라우저가 IE일 경우 에러페이지 출력
 		$userbrowser = $_SERVER["HTTP_USER_AGENT"];
 		if(strpos($userbrowser,"MSIE") !== false || strpos($userbrowser,"Trident") !== false) {
-			header('Location: ./?error=ie');
+			if ((string)$_GET['check'] != 'y') {
+				header('Location: ./?error=ie&check=y');
+			}
 		}
 	?>
 </head>
@@ -44,18 +46,20 @@
 		</table>
 	</div>
 	
-	<!-- 콘텐츠 영역: 파라미터로 파일 호출 -->
+	<!-- 콘텐츠 영역 -->
 	<div id = "contents">
 	<?php
 		// act값에 따라 필요한 파일 호출
-		if (isset($_GET['act'])) {
-			require_once './main/pages/'.$_GET['act'].'.php';
-		} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
-			require_once './main/pages/checkuploaded.php';
-		} else if (isset($_GET['error'])) {
-			require_once './main/errors/'.$_GET['error'].'.html';
-		} else {
-			require_once './main/pages/select_action.html';
+		{
+			if (isset($_GET['act'])) {
+				require_once './main/pages/'.$_GET['act'].'.php';
+			} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
+				require_once './main/pages/checkuploaded.php';
+			} else if (isset($_GET['error'])) {
+				require_once './main/errors/'.$_GET['error'].'.html';
+			} else {
+				require_once './main/pages/select_action.html';
+			}
 		}
 		
 		// download값에 따라 요청받은 파일 다운로드
@@ -65,7 +69,7 @@
 	?>
 	</div>
 	
-	<!-- 푸터: 군산대학교 -->
+	<!-- 푸터 영역 -->
 	<div id = "footer">
 		<p> 
 		<a href = "https://www.kunsan.ac.kr">Kunsan National University 2021</a>

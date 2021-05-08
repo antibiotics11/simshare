@@ -20,6 +20,19 @@
 	function alponly(e)  {
 		e.value = e.value.replace(/[^\\!-z]/gi,"");
 	}
+	
+	// 파일 업로드 폼
+	function uploadchange(file) {
+		var el = file.parentNode.parentNode.getElementsByTagName("*");
+		for (var i = 0; i < el.length; i++) {
+			var node = el[i];
+			if (node.className == "file-text") {
+				node.innerHTML = file.value;
+				break;
+			}
+		}
+	}
+
 </script>
 <br><br>
 
@@ -53,13 +66,86 @@
 	
 	<!-- 암호화 옵션 선택시 패스워드 입력창 -->
 	<div id = "inputpasswd" style = "display: none;">
+		<br><br>
+		<span class = "exp">
+		Create a password to encrypt your file with the AES-256 algorithm.
+		</span>
+		<br><br>
 		<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password">
-		<input type = "password" name = "checksum" id = "checksum" minlength = "4" maxlength = "10" placeholder = "Password">
+		<input type = "password" name = "checksum" id = "checksum" minlength = "4" maxlength = "10" placeholder = "Reenter Password">
 	</div>
 	
 	<!-- 파일 업로드 -->
 	<div style = "display: block;">
-		<input class = "" type = "file" name = "clientfile">
+	<br><br>
+	<style type = "text/css">
+	.box {
+  margin: 50px auto;
+  width: 500px;
+}
+
+.filetype {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  *margin-right: 4px;
+}
+
+.filetype * {
+  vertical-align: middle;
+}
+
+.filetype .file-text {
+  position: relative;
+  width: 350px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  height: 20px;
+  background-color: #ecefef;
+  margin: 0;
+  border: 1px solid #cdd3d4;
+  line-height: 20px;
+  z-index: 10;
+}
+
+.filetype .file-select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  overflow: hidden;
+}
+
+.filetype .file-select .input-file {
+  width: 60px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  height: 20px;
+}
+
+.filetype .file-text + .file-btn {
+  display: inline-block;
+  background-color: #cdd3d4;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 15px;
+  color: #fff !important;
+  cursor: pointer;
+  *margin-left: 4px;
+}
+</style>
+		<div class="box">
+		<span class="filetype">
+		<span class="file-text"></span>
+		<span class="file-btn">찾아보기</span>
+		<span class="file-select">
+		<input id = "input-file" type = "file" name = "clientfile" onchange="uploadchange(this);">
+		</span>
+		</span>
+		</div>
+		<br><br>
 		<button class = "btn1" type = "submit"> Upload File to simshare</button>
 	</div>
 	
