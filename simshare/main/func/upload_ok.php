@@ -1,5 +1,5 @@
 <?php 
-	// 서버에 파일 업로드를 처리하는 php 파일입니다.
+	// 서버에 파일 업로드를 처리하는 php 파일
 
 	// 파일에 부여할 랜덤 코드 생성 함수
 	function randstring($length) {  
@@ -95,35 +95,38 @@
 		move_uploaded_file($_FILES['clientfile']['tmp_name'], $filecreated);
 		
 		// 파일 압축 => zip
-		if ((int)$selected_ext) {
-			shell_exec("zip -r ".$fileloc.$filecode." ".$filecreated);
-			rename ($filecreated.".zip", $filecreated);
+		{
+			if ((int)$selected_ext) {
+				shell_exec("zip -r ".$fileloc.$filecode." ".$filecreated);
+				rename ($filecreated.".zip", $filecreated);
+			}
 		}
 		
 		// 파일 암호화 => mcrypt 라이브러리 활용
-		if ((int)$selected_alg) {
-			$filecontents = file_get_contents($filecreated);
-			
-			#$iv = "16byte 초기값";
-			#$key = "32byte key";
-			#$enc = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $filecontents, MCRYPT_MODE_CBC, $iv);
-
+		{
+			if ((int)$selected_alg) {
+				$filecontents = file_get_contents($filecreated);
+				
+				#$iv = "16byte 초기값";
+				#$key = "32byte key";
+				#$enc = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $filecontents, MCRYPT_MODE_CBC, $iv);
+			}
 		}
 		
 		// 파일 코드 및 만료일 db에 저장하고 파라미터로 사용자에게 전달
-		
-		$timestamp = strtotime("+1 week");
-		$expdate = date("Y-m-d", $timestamp);
-		
-		include './db.php';
-		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
-		$upload_sql = "insert into clientfiles values('$filecode','$expdate','$userpasswd');";
-		$upload_ok = mysqli_query($conn, $upload_sql);
+		{ 
+			$timestamp = strtotime("+1 week");
+			$expdate = date("Y-m-d", $timestamp);
+			
+			include './db.php';
+			$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
+			$upload_sql = "insert into clientfiles values('$filecode','$expdate','$userpasswd');";
+			$upload_ok = mysqli_query($conn, $upload_sql);
 
-		header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);
+			header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);
+		}
 		
 	} else {
-		
 		// 파일 없으면 종료
 		$message = "No uploaded file";
 		errorpopup($message);

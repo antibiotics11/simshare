@@ -125,6 +125,22 @@ body {
 #icon_space {
 }
 
+#uploadform .exp {
+	color: #4caf50;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 130%;
+}
+
+#uploadform select {
+	width: 230px;
+	appearance: none;
+    padding: .8em .5em;
+    color: black;
+	font-family: 'Montserrat', sans-serif;
+    border: 2px solid #4caf50;
+    text-align: center;
+}
+
 #about #magnifying-glass {
 	font-size: 10em;
 	display: inline-block;
@@ -150,6 +166,8 @@ body {
 	position: absolute;
 }
 
+/* --- error 페이지 --- */
+
 #errorpage, #aboutpage {
 	font-family: 'Montserrat', sans-serif;
 	height: 600px;
@@ -166,6 +184,8 @@ body {
 	color: black;
 	font-size: 120%;
 }
+
+/* --- 공통 요소 --- */
 
 .btn1 {
 	border-radius: 60px;

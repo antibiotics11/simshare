@@ -1,6 +1,5 @@
 <?php
 	// 기한이 만료된 파일을 자동으로 삭제 
-	// 2021-05-08 01:58 테스트 종료
 	
 	function autodel() {
 		include './db.php';

@@ -11,6 +11,13 @@
 	<link href = "./webfiles/images/share.svg" rel = "shortcut icon" >
 	<link href = "https://fonts.gstatic.com"  rel = "preconnect">
 	<link href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel = "stylesheet"> 
+	<?php
+		// 웹브라우저가 IE일 경우 에러페이지 출력
+		$userbrowser = $_SERVER["HTTP_USER_AGENT"];
+		if(strpos($userbrowser,"MSIE") !== false || strpos($userbrowser,"Trident") !== false) {
+			header('Location: ./?error=ie');
+		}
+	?>
 </head>
 
 <body>
@@ -40,6 +47,7 @@
 	<!-- 콘텐츠 영역: 파라미터로 파일 호출 -->
 	<div id = "contents">
 	<?php
+		// act값에 따라 필요한 파일 호출
 		if (isset($_GET['act'])) {
 			require_once './main/pages/'.$_GET['act'].'.php';
 		} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
@@ -48,6 +56,11 @@
 			require_once './main/errors/'.$_GET['error'].'.html';
 		} else {
 			require_once './main/pages/select_action.html';
+		}
+		
+		// download값에 따라 요청받은 파일 다운로드
+		if (isset($_GET['download'])) {
+			header('Location: ./main/func/download_ok.php?filecode='.$_GET['download']);
 		}
 	?>
 	</div>
