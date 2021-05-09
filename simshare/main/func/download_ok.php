@@ -72,33 +72,25 @@
 		}
 	}
 	
-	// 임시 디렉터리 파일 압축 해제
-	if ($zipfile) {
-		#shell_exec("unzip -o ".$filecreated);
-	}
-	
 	// 임시 디렉터리 파일 이름 변경
-	rename($filecreated, "../../tmpfiles/".$ori_filename);
+	if ($zipfile) {
+		shell_exec("unzip -o ".$filecreated);
+		shell_exec("mv ".$filecreated." ../../tmpfiles/");
+	}
 	$filedownload = "../../tmpfiles/".$ori_filename;
+	rename($filecreated, $filedownload);
 	
 	// 임시 디렉터리 파일 다운로드
-	{
-		header("Content-Type:application/octet-stream");
-		header("Content-Disposition:attachment;filename=".basename($filedownload)."");
-		header("Content-Transfer-Encoding:binary");
-		header("Content-Length:".filesize($filedownload));
-		header("Cache-Control:cache,must-revalidate");
-		header("Pragma:no-cache");
-		header("Expires:0");
-		$fp = fopen($filedownload,"r");
-		while(!feof($fp)){
-			$buf = fread($fp,8096);
-			$read = strlen($buf);
-			print($buf);
-			flush();
-		}
-        fclose($fp);
-	}
+	header("Content-Type:application/octet-stream");
+	header("Content-Disposition:attachment;filename=".basename($filedownload)."");
+	header("Content-Transfer-Encoding:binary");
+	header("Content-Length:".filesize($filedownload));
+	header("Cache-Control:cache,must-revalidate");
+	header("Pragma:no-cache");
+	header("Expires:0");
+	ob_clean();
+	flush();
+	readfile($filedownload);
 	
 	// 임시 디렉터리 파일 삭제
 	unlink($filedownload);
