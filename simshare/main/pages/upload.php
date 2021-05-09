@@ -147,6 +147,7 @@
 		</div>
 		<br><br>
 		<button class = "btn1" type = "submit"> Upload File to simshare</button>
+		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
 	</div>
 	
 </form>

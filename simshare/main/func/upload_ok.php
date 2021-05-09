@@ -60,7 +60,8 @@
 				errorpopup($message);
 				exit;
 			} else {
-				$userpasswd = base64_encode((string)md5((string)$_POST['passwd']));
+				$userpasswd = md5((string)$_POST['passwd']);
+				$userpasswd = substr(hash('sha256', (string)$userpasswd, true), 0, 32);
 			}
 		}
 		
@@ -94,23 +95,23 @@
 		$filecreated = $fileloc."/".$filecode;
 		move_uploaded_file($_FILES['clientfile']['tmp_name'], $filecreated);
 		
-		// 파일 압축 => zip
-		{
-			if ((int)$selected_ext) {
-				shell_exec("zip -r ".$fileloc.$filecode." ".$filecreated);
-				rename ($filecreated.".zip", $filecreated);
-			}
+		// 파일 zip으로 압축
+		if ((int)$selected_ext) {
+			shell_exec("zip ".$fileloc.$filecode." ".$filecreated);
+			rename ($filecreated.".zip", $filecreated);
+			$zipfile = 1;
+		} else {
+			$zipfile = 0;
 		}
 		
-		// 파일 암호화 => mcrypt 라이브러리 활용
-		{
-			if ((int)$selected_alg) {
-				$filecontents = file_get_contents($filecreated);
-				
-				#$iv = "16byte 초기값";
-				#$key = "32byte key";
-				#$enc = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $filecontents, MCRYPT_MODE_CBC, $iv);
-			}
+		// 파일 SHA-256으로 암호화 => openssl
+		if ((int)$selected_alg) {
+			$file_contents = file_get_contents($filecreated);
+			$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
+			$content_encrypted = openssl_encrypt($file_contents, 'aes-256-cbc', $userpasswd, OPENSSL_RAW_DATA, $iv);
+			$fp = fopen($filecreated, 'r+');
+			fwrite($fp, $content_encrypted);
+			fclose($fp);
 		}
 		
 		// 파일 정보 db에 저장하고 파라미터로 사용자에게 전달
@@ -120,7 +121,7 @@
 			
 			include './db.php';
 			$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
-			$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd');";
+			$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd','$zipfile');";
 			$upload_ok = mysqli_query($conn, $upload_sql);
 
 			header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);

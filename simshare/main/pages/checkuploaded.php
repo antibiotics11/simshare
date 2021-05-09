@@ -30,9 +30,12 @@
 	Your File Code: <span style = "color: #4caf50"><?=$_GET['filecode']?></span> 
 	<br><br>
 	File Download Link <br>
-	<a href = "<?=$userfilelink?>"> <?=(string)$userfilelink?> </a> <br>
+	<a href = "<?=$userfilelink?>"> <?=(string)$userfilelink?> </a>
+	<br><br>
 	<button onclick="copy()" class = "btn1"> Copy link to clipboard </button>
 	<br><br>
 	File Expiration Date: <?=$_GET['expdate']?> 00:00
 	</p>
+	<br><br>
+	<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
 </div>

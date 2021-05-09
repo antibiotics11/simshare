@@ -13,6 +13,9 @@
 		"hwp",
 		"doc",
 		"docx",
+		"pptx",
+		"ppt",
+		"pdf",
 		"zip",
 		"alz",
 		"tar"
