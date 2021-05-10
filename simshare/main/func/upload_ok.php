@@ -53,15 +53,16 @@
 			exit;
 		}
 		
-		// 암호화 선택시 패스워드 해싱
+		// 암호화 선택시 패스워드 처리
 		if ($selected_alg) {
 			if ((string)$_POST['passwd'] != (string)$_POST['checksum']) {
 				$message = "Password does not match";
 				errorpopup($message);
 				exit;
 			} else {
-				$userpasswd = md5((string)$_POST['passwd']);
-				$userpasswd = substr(hash('sha256', (string)$userpasswd, true), 0, 32);
+				// md5 해싱하고 sha256 해싱
+				$userpasswd_hased = (string)md5((string)$_POST['passwd']);
+				$userpasswd = substr(hash('sha256', (string)$userpasswd_hased, true), 0, 32);
 			}
 		}
 		
@@ -121,7 +122,9 @@
 			
 			include './db.php';
 			$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
-			$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd','$zipfile');";
+			$encoding = "set names utf8;";
+			$set_encoding = mysqli_query($conn, $encoding);
+			$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd_hased','$zipfile');";
 			$upload_ok = mysqli_query($conn, $upload_sql);
 
 			header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);

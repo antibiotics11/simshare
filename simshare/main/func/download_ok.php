@@ -32,6 +32,8 @@
 	{
 		include './db.php';
 		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
+		$encoding = "set names utf8;";
+		$set_encoding = mysqli_query($conn, $encoding);
 		$check_sql = "select * from clientfiles where code='$filecode';";
 		$check_result = mysqli_query($conn, $check_sql);
 		while ($fileinfo = mysqli_fetch_array($check_result)) {
@@ -48,16 +50,16 @@
 	copy($filecreated, "../../tmpfiles/".$filecode);
 	$filecreated = "../../tmpfiles/".$filecode;
 	
-	// 임시 디렉터리 파일 복호화
+	// 패스워드 확인 후 임시 디렉터리 파일 복호화
 	{
 		if (isset($encrypted)) {
 			
 			if (!isset($_POST['passwd'])) {
 				header('Location: ../pages/passwd_check.php?filecode='.$filecode);
 			}
-			$checkpasswd = md5((string)$_POST['passwd']);
-			$checkpasswd = substr(hash('sha256', (string)$checkpasswd, true), 0, 32);
-			if ((string)$checkpasswd != (string)$userpasswd) {
+			$checkpasswd_hased = (string)md5((string)$_POST['passwd']);
+			$checkpasswd = substr(hash('sha256', (string)$checkpasswd_hased, true), 0, 32);
+			if ((string)$checkpasswd_hased != (string)$userpasswd) {
 				$message = "Incorrect Password";
 				errorpopup($message);
 				exit;
@@ -65,17 +67,17 @@
 			
 			$file_contents = file_get_contents($filecreated);
 			$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-			$content_decrypted = openssl_decrypt($file_contents, 'aes-256-cbc', $userpasswd, OPENSSL_RAW_DATA, $iv);
+			$content_decrypted = openssl_decrypt($file_contents, 'aes-256-cbc', (string)$checkpasswd, OPENSSL_RAW_DATA, $iv);
 			$fp = fopen($filecreated, 'r+');
 			fwrite($fp, $content_decrypted);
 			fclose($fp);
 		}
 	}
 	
-	// 임시 디렉터리 파일 이름 변경
+	// 임시 디렉터리 파일 압축해제 => 사용 안함
 	if ($zipfile) {
 		shell_exec("unzip -o ".$filecreated);
-		shell_exec("mv ".$filecreated." ../../tmpfiles/");
+		shell_exec("mv ".$filecreated." /tmpfiles/");
 	}
 	$filedownload = "../../tmpfiles/".$ori_filename;
 	rename($filecreated, $filedownload);
@@ -93,5 +95,5 @@
 	readfile($filedownload);
 	
 	// 임시 디렉터리 파일 삭제
-	unlink($filedownload);
+	#unlink($filedownload);
 ?>
