@@ -21,4 +21,5 @@
 	<p> [Visit GitHub]&nbsp;
 	<a href = "https://github.com/antibiotics11"> https://github.com/antibiotics11 </a>
 	</p>
+	<?php ?>
 </div>
