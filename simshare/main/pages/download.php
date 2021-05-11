@@ -19,7 +19,7 @@
 		Enter Your file code or download link.
 		</span>
 		<br><br>
-		<input type = "text" name = "filecode" placeholder = "File code or Download link">
+		<input type = "text" name = "filecode" placeholder = "File code or Download link" required>
 		<br><br>
 		<button class = "btn1" type = "submit"> Download File </button>
 		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
