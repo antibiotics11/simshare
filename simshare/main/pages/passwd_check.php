@@ -13,6 +13,7 @@
 </head>
 <body>
 	<div id = "uploadform" style = "text-align: center;">
+	<?php ?>
 	<script type = "text/javascript">
 		function alponly(e)  {
 			e.value = e.value.replace(/[^\\!-z]/gi,"");

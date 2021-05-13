@@ -2,6 +2,7 @@
 
 <div id = "uploadform">
 <!-- 스크립트 -->
+<?php ?>
 <script type = "text/javascript">
 	// 패스워드 입력창 출력 
 	function showinputpasswd(value) {
