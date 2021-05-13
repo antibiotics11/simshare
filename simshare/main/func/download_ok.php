@@ -95,5 +95,5 @@
 	readfile($filedownload);
 	
 	// 임시 디렉터리 파일 삭제
-	#unlink($filedownload);
+	unlink($filedownload);
 ?>

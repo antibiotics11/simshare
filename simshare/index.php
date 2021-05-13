@@ -7,8 +7,8 @@
 	<!--<meta name = "viewport" content = "width=device-width, initial-scale=1.0">-->
 	<meta property = "og:title" content = "simshare">
 	
-	<link href = "./webfiles/main.css" rel = "stylesheet" type = "text/css">
-	<link href = "./webfiles/images/share.svg" rel = "shortcut icon" >
+	<link href = "/webfiles/main.css" rel = "stylesheet" type = "text/css">
+	<link href = "/webfiles/images/share.svg" rel = "shortcut icon" >
 	<link href = "https://fonts.gstatic.com"  rel = "preconnect">
 	<link href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel = "stylesheet"> 
 	<?php
@@ -30,13 +30,13 @@
 		<tr>
 			<td style = "width: 5%;">
 			<div class = "simshare_icon">
-				<img src = "./webfiles/images/share.png" alt = "logo">
+				<img src = "/webfiles/images/share.png" alt = "logo">
 			</div>
 			</td>
 			<td style = "width: 15%;">
 			<div class = "simshare_title">
 				<h1> 
-				<a href = "./">
+				<a href = "/">
 				sim<span style = "color: #4caf50;">share</span>
 				</a> 
 				</h1>
@@ -56,7 +56,11 @@
 			} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
 				require_once './main/pages/checkuploaded.php';
 			} else if (isset($_GET['error'])) {
-				require_once './main/errors/'.$_GET['error'].'.html';
+				if (file_exists('./main/errors/'.$_GET['error'].'.html')) {
+					require_once './main/errors/'.$_GET['error'].'.html';
+				} else {
+					require_once './main/errors/404.html';
+				}
 			} else {
 				require_once './main/pages/select_action.html';
 			}
