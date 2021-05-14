@@ -3,7 +3,7 @@
 <html lang = "ko">
 <head>
 	<meta http-equiv = "content-type" content = "text/html" charset = "utf-8">
-	<meta name = "title" content = "simshare">
+	<title> simshare </title>
 	<!--<meta name = "viewport" content = "width=device-width, initial-scale=1.0">-->
 	<meta property = "og:title" content = "simshare">
 	

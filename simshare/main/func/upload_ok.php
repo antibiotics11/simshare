@@ -1,5 +1,7 @@
 <?php 
 	// 서버에 파일 업로드를 처리하는 php 파일
+	
+	ini_set('memory_limit','256M');
 
 	// 파일에 부여할 랜덤 코드 생성 함수
 	function randstring($length) {  
@@ -35,7 +37,7 @@
 		// 업로드된 파일 정보 정리
 		$tmp_filename = $_FILES['clientfile']['name']; // 파일명
 		$file_name = $_FILES['clientfile']['name'];
-		$file_size = ($_FILES['clientfile']['size'] / (int)1000000); // 파일 용량 
+		$file_size = ($_FILES['clientfile']['size'] / (1024 * 1024)); // 파일 용량 
 		$selected_ext = (int)$_POST['compress']; // 압축 여부
 		$selected_alg = (int)$_POST['encrypt']; // 암호화 여부
 		$fileloc = '../../clientfiles/';
@@ -46,8 +48,8 @@
 		$file_ext = $file_ext_tmp[0];
 		$file_ext = strtolower($file_ext);
 		
-		// 용량 2gb 초과시 종료
-		if ((int)$file_size > (int)2000) {
+		// 용량 200mb 초과시 종료
+		if ((int)$file_size > (int)200) {
 			$message = "File is too large";
 			errorpopup($message);
 			exit;
@@ -96,10 +98,11 @@
 		$filecreated = $fileloc."/".$filecode;
 		move_uploaded_file($_FILES['clientfile']['tmp_name'], $filecreated);
 		
-		// 파일 zip으로 압축
-		if ((int)$selected_ext) {
-			shell_exec("zip ".$fileloc.$filecode." ".$filecreated);
-			rename ($filecreated.".zip", $filecreated);
+		// 파일 압축여부 확인
+		if ($selected_ext) {
+			// 업로드시 압축 사용안함 => 다운로드시 압축해서 사용자에게 제공
+			#shell_exec("zip ".$fileloc.$filecode." ".$filecreated);
+			#rename ($filecreated.".zip", $filecreated);
 			$zipfile = 1;
 		} else {
 			$zipfile = 0;

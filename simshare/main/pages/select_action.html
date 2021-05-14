@@ -1,33 +1,36 @@
 <!-- 작업 선택 메인 페이지 -->
 <br><br>
-<table style = "width: 80%; height: 500px;">
+<table id = "selectaction">
 <tr>
-	<td rowspan = "2" style = "height: 500px;">
-	<div id = "send_file" onclick="location.href='./?act=upload'">
+	<td style = "height: 100%; width: 25%;">
+	<div id = "recv_file" onclick = "location.href='./?act=download'">
+		<br><br>
 		<div id = "icon_space">
-			<div id = "cross">
-			</div>
+			<span id = "down"></span>
 		</div>
-		<p> Upload File </p>
-	</div>
-	</td>
-	<td style = "height: 240px;">
-	<div id = "recv_file" onclick="location.href='./?act=download'">
-		<div id = "icon_space">
-			<div id = "down">
-			</div>
-		</div>
+		<br>
 		<p> Downlaod File </p>
 	</div>
 	</td>
-</tr>
-<tr>
-	<td style = "height: 240px;">
-	<div id = "about" onclick="location.href='./?act=about'">
+	
+	<td style = "height: 100%; width: 25%;">
+	<div id = "send_file" onclick = "location.href='./?act=upload'">
+		<br><br>
 		<div id = "icon_space">
-			<div id = "magnifying-glass">
-			</div>
+			<span id = "cross"></span>
 		</div>
+		<br><br><br><br>
+		<p> Upload File </p>
+	</div>
+	</td>
+	
+	<td style = "height: 100%; width: 25%;">
+	<div id = "about" onclick = "location.href='./?act=about'">
+		<br><br>
+		<div id = "icon_space">
+			<span id = "magnifying-glass"></span>
+		</div>
+		<br><br>
 		<p> About </p>
 	</div>
 	</td>

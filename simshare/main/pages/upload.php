@@ -4,6 +4,7 @@
 <!-- 스크립트 -->
 <?php ?>
 <script type = "text/javascript">
+
 	// 패스워드 입력창 출력 
 	function showinputpasswd(value) {
 		if (value == 1) {
@@ -22,16 +23,9 @@
 		e.value = e.value.replace(/[^\\!-z]/gi,"");
 	}
 	
-	// 파일 업로드 폼
-	function uploadchange(file) {
-		var el = file.parentNode.parentNode.getElementsByTagName("*");
-		for (var i = 0; i < el.length; i++) {
-			var node = el[i];
-			if (node.className == "file-text") {
-				node.innerHTML = file.value;
-				break;
-			}
-		}
+	// 업로드 파일 이름 출력
+	function showfilename(filepath) {
+		document.getElementById('filename').value = filepath;
 	}
 
 </script>
@@ -57,8 +51,6 @@
 			<select name = "compress">
 				<option value = "0"> None </option>
 				<option value = "1"> To zip </option>
-				<!-- tar.gz 옵션은 현재 사용하지 않지만 추후 업데이트 계획 -->
-				<!-- <option value = '2'> To tar.gz </option> -->
 			</select>
 			</td>
 		</tr>
@@ -78,75 +70,13 @@
 	
 	<!-- 파일 업로드 -->
 	<div style = "display: block;">
-	<br><br>
-	<style type = "text/css">
-	.box {
-  margin: 50px auto;
-  width: 500px;
-}
-
-.filetype {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  *margin-right: 4px;
-}
-
-.filetype * {
-  vertical-align: middle;
-}
-
-.filetype .file-text {
-  position: relative;
-  width: 350px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-  height: 20px;
-  background-color: #ecefef;
-  margin: 0;
-  border: 1px solid #cdd3d4;
-  line-height: 20px;
-  z-index: 10;
-}
-
-.filetype .file-select {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  overflow: hidden;
-}
-
-.filetype .file-select .input-file {
-  width: 60px;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  height: 20px;
-}
-
-.filetype .file-text + .file-btn {
-  display: inline-block;
-  background-color: #cdd3d4;
-  height: 22px;
-  line-height: 22px;
-  padding: 0 15px;
-  color: #fff !important;
-  cursor: pointer;
-  *margin-left: 4px;
-}
-</style>
-		<div class="box">
-		<span class="filetype">
-		<span class="file-text"></span>
-		<span class="file-btn">찾아보기</span>
-		<span class="file-select">
-		<input id = "input-file" type = "file" name = "clientfile" onchange="uploadchange(this);">
-		</span>
-		</span>
-		</div>
-		<br><br>
+		<br><br> 
+		<input type = "text" id = "filename" class = "filepathbox" placeholder = " File Path" readonly>
+		&nbsp;&nbsp;
+		<label class = "btn2"> Browse File
+			<input type = "file" class = "inputfile" name = "clientfile" onchange = "showfilename(this.value)" style = "display: none;" required>
+		</label>
+		<br><br><br><br>
 		<button class = "btn1" type = "submit"> Upload File to simshare</button>
 		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
 	</div>

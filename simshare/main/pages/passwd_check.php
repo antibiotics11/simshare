@@ -28,7 +28,7 @@
 			</span>
 			<br><br>
 			<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required>
-			<br><br>
+			<br><br><br><br>
 			<button class = "btn1" type = "submit"> Submit Password </button>
 			<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
 		</div>

@@ -8,9 +8,9 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine on
 
-	### https 리디렉션 처리 => vhost에 설정되지 않았다면 주석 해제
-	#RewriteCond %{HTTPS} off
-	#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+	### https 리디렉션 처리
+	RewriteCond %{HTTPS} off
+	RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 	### index.php 생략
 	RewriteCond %{THE_REQUEST} ^.*/index\.php 

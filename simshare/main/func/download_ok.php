@@ -1,6 +1,8 @@
 <?php
 	// 사용자 요청시 파일 다운로드를 처리하는 php 파일
 	
+	ini_set('memory_limit','256M');
+	
 	// 에러 출력 함수
 	function errorpopup($message) {
 		echo "
@@ -74,13 +76,19 @@
 		}
 	}
 	
-	// 임시 디렉터리 파일 압축해제 => 사용 안함
-	if ($zipfile) {
-		shell_exec("unzip -o ".$filecreated);
-		shell_exec("mv ".$filecreated." /tmpfiles/");
-	}
 	$filedownload = "../../tmpfiles/".$ori_filename;
 	rename($filecreated, $filedownload);
+	
+	// 압축여부 확인하고 압축해서 제공
+	if ($zipfile) {
+		copy($filedownload, "./".$ori_filename);
+		shell_exec("zip ./".$filecode." ./".$ori_filename);
+		unlink($filedownload);
+		copy("./".$filecode.".zip", "../../tmpfiles/".$filecode.".zip");
+		unlink("./".$ori_filename);
+		unlink("./".$filecode.".zip");
+		$filedownload = "../../tmpfiles/".$filecode.".zip";
+	}
 	
 	// 임시 디렉터리 파일 다운로드
 	header("Content-Type:application/octet-stream");

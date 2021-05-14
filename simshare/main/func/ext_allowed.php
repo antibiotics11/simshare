@@ -1,5 +1,5 @@
 <?php
-	//업로드 허용 확장자 리스트입니다.
+	//업로드 허용 확장자 리스트
 	
 	$ext_allowed = array(
 		"txt",
@@ -8,6 +8,7 @@
 		"gif",
 		"svg",
 		"png",
+		"mpeg",
 		"mp4",
 		"mp3",
 		"hwp",
@@ -15,9 +16,6 @@
 		"docx",
 		"pptx",
 		"ppt",
-		"pdf",
-		"zip",
-		"alz",
-		"tar"
+		"pdf"
 	);
 ?>

@@ -6,25 +6,16 @@
 		location.href = loc;
 	}
 </script>
-<style type = "text/css">
-	select {
-		font-size: 14px;
-		border: 2px solid #4caf50;
-		appearance: none;
-		text-align: center;
-		background-color: #ecefef;
-	}
-</style>
 <?php
 	if ((string)$_GET['lang'] == "ko") {
-		$about1 = "simshare는 군산대학교 컴퓨터정보통신공학부 학생이 기말과제로 개발한 웹앱입니다.";
+		$about1 = "simshare는 군산대학교 컴퓨터정보통신공학부 학생이 웹개발 과제로 개발한 웹앱입니다.";
 		$about2 = "소스코드는 MIT 라이선스로 배포됩니다.";
-		$about3 = "2gb이하 용량의 파일을 simshare 서버에 업로드해두고 일주일 이내 언제든지 다운받을 수 있습니다.";
+		$about3 = "200mb 이하 용량의 파일을 simshare 서버에 업로드해두고 일주일 이내 언제든지 다운받을 수 있습니다.";
 		$about4 = "파일 업로드시 암호화 / 압축 옵션을 선택할 수 있습니다.";
 	} else {
 		$about1 = "simshare was developed as part of web programming project at the Kunsan National University.";
 		$about2 = "Source code is deployed under the MIT license.";
-		$about3 = "You can upload a file with less than 2gb to the simshare server and download it at any time within a week.";
+		$about3 = "You can upload a file with less than 200mb to the simshare server and download it at any time within a week.";
 		$about4 = "When uploading a file, you can select the encryption or compression option.";
 	}
 ?>
@@ -51,7 +42,7 @@
 	<a href = "https://github.com/antibiotics11"> https://github.com/antibiotics11 </a>
 	</p>
 	<span style = "color: #4caf50;"> <b>Select Language</b> </span>&nbsp;
-	<select name = "select" onchange = "langsel(this.value)">
+	<select id = "langsel" name = "select" onchange = "langsel(this.value)">
 <?php 
 	if ((string)$_GET['lang'] == "ko") {
 		echo "
