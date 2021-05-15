@@ -17,11 +17,11 @@ simshare는 군산대학교 컴퓨터정보통신공학부 학생이 웹개발 �
 도메인: <a href = "https://simshare.xyz">simshare.xyz</a>
 <br><br>
 O/S: Ubuntu Server 16.04 LTS <br>
-Host: New Jersey (USA) by <a href = "https://www.vultr.com/">Vultr Cloud Compute</a> <br>
-DNS: <a href = "https://www.cloudflare.com/">Cloudflare</a> <br>
+Host: New Jersey (USA) by <a href = "https://www.vultr.com/">Vultr</a> <br>
 LAMP: Apache HTTP Server 2.4 / PHP 7.0 / MySQL 5.7 
 <br><br>
-시스템 보호를 위해 웹 방화벽을 사용하고 있습니다. <br>
+시스템 보호를 위해 웹 방화벽을 사용하고 있습니다. 
+<br>
 일부 파일의 경우 방화벽에 의해 업로드가 차단될 수 있습니다.
 <br><br>
 
@@ -58,7 +58,7 @@ $ sudo a2enmod rewrite
 $ sudo systemctl restart apache2
 ```
 
-/etc/apache2/apache2.conf 파일에 다음 내용을 추가합니다.
+apache2.conf 파일에 다음 내용을 추가합니다.
 ```
 <Directory /var/www/simshare>
     Options FollowSymLinks
@@ -73,41 +73,29 @@ https 리디렉션을 사용하지 않을 경우, htaccess 파일의 12, 13 라�
 <br><br>
 ### PHP 7.0 설정 
 
-/etc/php/7.0/apache2/php.ini 파일을 수정해야 합니다.
+php.ini 파일을 수정해야 합니다.
 
 200mb 파일을 업로드하기 위해 라인 656, 809를 수정해 post_max_size와 upload_max_filesize를 각각 220M, 200M으로 수정합니다.
 ```
-; Maximum size of POST data that PHP will accept.
-; Its value may be 0 to disable the limit. It is ignored if POST data reading
-; is disabled through enable_post_data_reading.
-; http://php.net/post-max-size
-post_max_size = 8M
+post_max_size = 220M
 ```
 
 ```
-; Maximum allowed size for uploaded files.
-; http://php.net/upload-max-filesize
 upload_max_filesize = 200M
 ```
 
-시간 초과로 인한 실행종료를 방지하기 위해 라인 368, 378을 수정해 max_execution_time과 max_input_time을 각각 600(또는 그 이상)으로 수정합니다.
+시간 초과로 인한 실행종료를 방지하기 위해, 라인 368, 378의 max_execution_time과 max_input_time을 각각 600(또는 그 이상)으로 수정합니다.
 
 ```
-; Maximum execution time of each script, in seconds
-; http://php.net/max-execution-time
-; Note: This directive is hardcoded to 0 for the CLI SAPI
 max_execution_time = 600
-
-; Maximum amount of time each script may spend parsing request data. It's a good
-; idea to limit this time on productions servers in order to eliminate unexpectedly
-; long running scripts.
-; Note: This directive is hardcoded to -1 for the CLI SAPI
-; Default Value: -1 (Unlimited)
-; Development Value: 60 (60 seconds)
-; Production Value: 60 (60 seconds)
-; http://php.net/max-input-time
+```
+```
 max_input_time = 600
 ```
+<br>
+memory_limit의 경우, ini_set() 함수로 필요한 스크립트마다 메모리 값을 정의해두었습니다. 
+<br>
+서버 자원 사용률에 따라 이 부분을 수정할 수 있습니다.
 <br><br>
 
 ### 브라우저 지원
