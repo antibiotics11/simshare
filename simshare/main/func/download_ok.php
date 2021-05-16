@@ -45,6 +45,7 @@
 			} 
 			$zipfile = (int)$fileinfo['zip'];
 			$ori_filename = $fileinfo['filename'];
+			$ori_filename = preg_replace("/\s+/","%",$ori_filename);
 		}
 	}
 	
