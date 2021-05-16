@@ -63,23 +63,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-#recv_file {
-	cursor: pointer;
-	background-color: #f1f3f4;
-	border-radius: 40px 40px;
-	height: 100%;
-	margin: 5% 5% 0% 5%;
-}
-
-#send_file {
-	cursor: pointer;
-	background-color: #f1f3f4;
-	border-radius: 40px 40px;
-	height: 100%;
-	margin: 5% 5% 5% 5%;
-}
-
-#about {
+#recv_file, #send_file, #about {
 	cursor: pointer;
 	background-color: #f1f3f4;
 	border-radius: 40px 40px;
@@ -95,34 +79,12 @@ body {
 	font-size: 120%;
 }
 
-#recv_file #down {
-	display:inline-block; 
-	width:0; 
-	height:0; 
-	border-style:solid; 
-	border-width:50px;
-	border-color: #4caf50 transparent transparent transparent;
-}
-
-#send_file #cross {
-	background: #4caf50;
-	height: 100px;
-	position: absolute;
-	width: 20px;
-}
-
-#send_file #cross:after {
-	background: #4caf50;
-	content: "";
-	height: 20px;
-	left: -40px;
-	top: 40px;
-	width: 100px;
-	position: absolute;
-}
-
 #icon_space {
 	text-align: center;
+}
+
+#icon_space img {
+	width: 110px;
 }
 
 #uploadform .exp {
