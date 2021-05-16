@@ -109,3 +109,10 @@ memory_limit의 경우, ini_set() 함수로 필요한 스크립트마다 메모�
 예기치 못한 오류나 보안 위협을 방지하기 위해 Internet Explorer 접속을 차단하는 코드가 포함되어 있습니다. <br>
 Chromium 기반 브라우저의 최신 버전 사용을 권장합니다.
 <br><br>
+
+## 스크린샷
+
+![main1](https://user-images.githubusercontent.com/75349747/118394785-be9e1680-b681-11eb-887d-9122e6334169.PNG)
+![main2](https://user-images.githubusercontent.com/75349747/118394786-bf36ad00-b681-11eb-801c-27af3ac9274e.PNG)
+![main3](https://user-images.githubusercontent.com/75349747/118394787-bfcf4380-b681-11eb-8659-cc8a9f936505.PNG)
+![main4](https://user-images.githubusercontent.com/75349747/118394788-c067da00-b681-11eb-83c6-faf130de6479.PNG)
