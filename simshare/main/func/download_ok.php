@@ -93,7 +93,7 @@
 	
 	// 임시 디렉터리 파일 다운로드
 	header("Content-Type:application/octet-stream");
-	header("Content-Disposition:attachment;filename=".basename($filedownload)."");
+	header("Content-Disposition:attachment;filename=".iconv('UTF-8', 'CP949', str_replace("../../tmpfiles/", "", $filedownload))."");
 	header("Content-Transfer-Encoding:binary");
 	header("Content-Length:".filesize($filedownload));
 	header("Cache-Control:cache,must-revalidate");
