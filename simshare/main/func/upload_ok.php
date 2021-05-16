@@ -34,6 +34,17 @@
 		include_once './auto_del_file.php';
 		autodel();
 		
+		// 디스크 사용 용량 제한
+		$emptyspace = 50000; // 사용가능 용량 => mb 단위
+		$chkcommand = shell_exec("du -sh ../../");
+		$usedspace = str_replace("M", "", $chkcommand);
+		$usedspace = str_replace("../../", "", $usedspace);
+		if (((float)$emptyspace - 200) <= (float)$usedspace) {
+			$message = "Sorry. No more disk space left.";
+			errorpopup($message);
+			exit;
+		}
+		
 		// 업로드된 파일 정보 정리
 		$tmp_filename = $_FILES['clientfile']['name']; // 파일명
 		$file_name = $_FILES['clientfile']['name'];
