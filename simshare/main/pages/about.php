@@ -16,7 +16,7 @@
 		$about1 = "simshare was developed as part of web programming project at the Kunsan National University.";
 		$about2 = "Source code is deployed under the MIT license.";
 		$about3 = "You can upload a file with less than 200mb to the simshare server and download it at any time within a week.";
-		$about4 = "When uploading a file, you can select the encryption or compression option.";
+		$about4 = "When uploading a file, you can encrypt or compress your file.";
 	}
 ?>
 
