@@ -5,13 +5,23 @@ Web프로그래밍(1) 기말고사 포트폴리오 프로젝트입니다.
 본 Readme 파일은 간략한 개요와 웹앱 설치에 필요한 서버 환경 구축에 대한 가이드입니다.
 <br><br>
 
-## 개요
+## 개요 
+### Korean
 
 simshare는 군산대학교 컴퓨터정보통신공학부 학생이 웹개발 과제로 개발한 웹앱입니다.
-
+<br>
 200mb이하 용량의 파일을 simshare 서버에 업로드해두고 일주일 이내 언제든지 다운받을 수 있습니다. 
 <br>
 파일 업로드시 암호화 / 압축 옵션을 선택할 수 있습니다.
+<br><br>
+
+### English
+
+simshare was developed as part of web programming project at the Kunsan National University.
+<br>
+You can upload a file with less than 200mb to the simshare server and download it at any time within a week.
+<br>
+When uploading a file, you can encrypt or compress your file. 
 <br><br>
 
 ## 상세
