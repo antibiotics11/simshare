@@ -6,6 +6,12 @@
 ?>
 
 <script type = "text/javascript" src = "/main/pages/checkuploaded.js"></script>
+<script type = "text/javascript">
+	function copy() {
+		copylink('<?=$userfilelink?>');
+		alert('Link copied to clipboard');
+	}
+</script>
 
 <div id = "aboutpage">
 	<h2> File successfully uploaded to simshare! </h2>

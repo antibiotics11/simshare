@@ -7,8 +7,3 @@ function copylink(val) {
 	document.execCommand('copy');
 	document.body.removeChild(t);
 }
-		
-function copy() {
-	copylink('<?=$userfilelink?>');
-	alert('Link copied to clipboard');
-}
