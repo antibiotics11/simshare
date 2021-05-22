@@ -2,6 +2,7 @@
 
 <div id = "uploadform">
 <?php ?>
+<script type = "text/javascript" src = "/main/func/alponly.js"></script>
 <script type = "text/javascript" src = "/main/pages/upload.js"></script>
 <br><br>
 

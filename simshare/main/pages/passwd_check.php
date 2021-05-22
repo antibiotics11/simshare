@@ -14,11 +14,7 @@
 <body>
 	<div id = "uploadform" style = "text-align: center;">
 	<?php ?>
-	<script type = "text/javascript">
-		function alponly(e)  {
-			e.value = e.value.replace(/[^\\!-z]/gi,"");
-		}
-	</script>
+	<script type = "text/javascript" src = "/main/func/aplonly.js"></script>
 	<form action = "../func/download_ok.php?filecode=<?=(string)$_GET['filecode']?>" method = "POST">
 		<div id = "inputpasswd">
 			<br><br>

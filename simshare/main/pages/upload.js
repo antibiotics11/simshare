@@ -13,11 +13,6 @@ function showinputpasswd(value) {
 	}
 }
 	
-// 패스워드에 알파벳 및 숫자만 입력
-function alponly(e)  {
-	e.value = e.value.replace(/[^\\!-z]/gi,"");
-}
-	
 // 업로드 파일 이름 출력
 function showfilename(filepath) {
 	document.getElementById('filename').value = filepath;

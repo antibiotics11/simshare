@@ -5,24 +5,7 @@
 	$userfilelink = "https://".$_SERVER['SERVER_NAME']."/?download=".$_GET['filecode']; 
 ?>
 
-<script type = "text/javascript">
-	// 링크를 클립보드로 복사
-	{
-		function copylink(val) {
-			const t = document.createElement("textarea");
-			document.body.appendChild(t);
-			t.value = val;
-			t.select();
-			document.execCommand('copy');
-			document.body.removeChild(t);
-		}
-		
-		function copy() {
-			copylink('<?=$userfilelink?>');
-			alert('Link copied to clipboard');
-		}
-	}
-</script>
+<script type = "text/javascript" src = "/main/pages/checkuploaded.js"></script>
 
 <div id = "aboutpage">
 	<h2> File successfully uploaded to simshare! </h2>
