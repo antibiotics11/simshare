@@ -30,13 +30,9 @@ When uploading a file, you can encrypt or compress your file.
 
 도메인: <a href = "https://simshare.xyz">simshare.xyz</a>
 <br><br>
-O/S: Ubuntu Server 16.04 LTS <br>
-Host: New Jersey (USA) by <a href = "https://www.vultr.com/">Vultr</a> <br>
-LAMP: Apache HTTP Server 2.4 / PHP 7.0 / MySQL 5.7 
-<br><br>
-시스템 보호를 위해 웹 방화벽을 사용하고 있습니다. 
-<br>
-일부 파일의 경우 방화벽에 의해 업로드가 차단될 수 있습니다.
+O/S: Ubuntu Server 20.04 LTS <br>
+Host: South Korea, <a href = "https://iwinv.kr/">iwinv</a> <br>
+LAMP: Apache HTTP Server 2.4 / PHP 7.4 / MySQL 8.0 
 <br><br>
 
 ### O/S 설정
@@ -87,11 +83,11 @@ apache2.conf 파일에 다음 내용을 추가합니다.
 
 https 리디렉션을 사용하지 않을 경우, htaccess 파일의 12, 13 라인을 주석 처리하면 됩니다.
 <br><br>
-### PHP 7.0 설정 
+### PHP 7.4 설정 
 
 php.ini 파일을 수정해야 합니다.
 
-200mb 파일을 업로드하기 위해 라인 656, 809를 수정해 post_max_size와 upload_max_filesize를 각각 220M, 200M으로 수정합니다.
+200mb 파일을 업로드하기 위해 라인 694, 846를 수정해 post_max_size와 upload_max_filesize를 각각 220M, 200M으로 수정합니다.
 ```
 post_max_size = 220M
 ```
@@ -100,7 +96,7 @@ post_max_size = 220M
 upload_max_filesize = 200M
 ```
 
-시간 초과로 인한 실행종료를 방지하기 위해, 라인 368, 378의 max_execution_time과 max_input_time을 각각 600(또는 그 이상)으로 수정합니다.
+시간 초과로 인한 실행종료를 방지하기 위해, 라인 388, 398의 max_execution_time과 max_input_time을 각각 600(또는 그 이상)으로 수정합니다.
 
 ```
 max_execution_time = 600
