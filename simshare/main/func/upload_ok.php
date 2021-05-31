@@ -130,19 +130,16 @@
 		}
 		
 		// 파일 정보 db에 저장하고 파라미터로 사용자에게 전달
-		{ 
-			$timestamp = strtotime("+1 week");
-			$expdate = date("Y-m-d", $timestamp);
-			
-			include './db.php';
-			$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
-			$encoding = "set names utf8;";
-			$set_encoding = mysqli_query($conn, $encoding);
-			$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd_hased','$zipfile');";
-			$upload_ok = mysqli_query($conn, $upload_sql);
+		$timestamp = strtotime("+1 week");
+		$expdate = date("Y-m-d", $timestamp);
+		include './db.php';
+		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
+		$encoding = "set names utf8;";
+		$set_encoding = mysqli_query($conn, $encoding);
+		$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd_hased','$zipfile');";
+		$upload_ok = mysqli_query($conn, $upload_sql);
 
-			header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);
-		}
+		header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);
 		
 	} else {
 		// 파일 없으면 종료

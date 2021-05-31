@@ -50,20 +50,18 @@
 	<div id = "contents">
 	<?php
 		// act값에 따라 필요한 파일 호출
-		{
-			if (isset($_GET['act'])) {
-				require_once './main/pages/'.$_GET['act'].'.php';
-			} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
-				require_once './main/pages/checkuploaded.php';
-			} else if (isset($_GET['error'])) {
-				if (file_exists('./main/errors/'.$_GET['error'].'.html')) {
-					require_once './main/errors/'.$_GET['error'].'.html';
-				} else {
-					require_once './main/errors/404.html';
-				}
+		if (isset($_GET['act'])) {
+			require_once './main/pages/'.$_GET['act'].'.php';
+		} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
+			require_once './main/pages/checkuploaded.php';
+		} else if (isset($_GET['error'])) {
+			if (file_exists('./main/errors/'.$_GET['error'].'.html')) {
+				require_once './main/errors/'.$_GET['error'].'.html';
 			} else {
-				require_once './main/pages/select_action.html';
+				require_once './main/errors/404.html';
 			}
+		} else {
+			require_once './main/pages/select_action.html';
 		}
 		
 		// download값에 따라 요청받은 파일 다운로드
