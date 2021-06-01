@@ -61,6 +61,7 @@ body {
 	width: 75%; 
 	height: 500px;
 	font-family: 'Montserrat', sans-serif;
+	z-index: -1;
 }
 
 #recv_file, #send_file, #about {
@@ -207,7 +208,8 @@ body {
 	width: 100%;
 	bottom: 0;
 	text-align: center;
-	position: fixed;
+	position: ;
+	margin-top: 10%;
 	padding-top: 2px;
 	height: 90px;
 }
