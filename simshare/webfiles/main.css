@@ -13,6 +13,7 @@ body {
 	position: fixed;
 	top: 0;
 	width: 100%;
+	z-index: 1;
 }
 
 #header table {
@@ -61,7 +62,6 @@ body {
 	width: 75%; 
 	height: 500px;
 	font-family: 'Montserrat', sans-serif;
-	z-index: -1;
 }
 
 #recv_file, #send_file, #about {
