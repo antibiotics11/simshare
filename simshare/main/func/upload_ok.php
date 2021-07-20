@@ -68,6 +68,11 @@
 		
 		// 암호화 선택시 패스워드 처리
 		if ($selected_alg) {
+			if (!isset($_POST['passwd']) || empty($_POST['passwd'])) {
+				$message = "password does not exist";
+				errorpopup($message);
+				exit;
+			}
 			if ((string)$_POST['passwd'] != (string)$_POST['checksum']) {
 				$message = "Password does not match";
 				errorpopup($message);
@@ -130,7 +135,7 @@
 		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
 		$encoding = "set names utf8;";
 		$set_encoding = mysqli_query($conn, $encoding);
-		$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$passwd_hash','$zipfile');";
+		$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$passwd_hash', '3', '$zipfile');";
 		$upload_ok = mysqli_query($conn, $upload_sql);
 
 		header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);
