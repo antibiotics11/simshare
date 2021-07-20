@@ -32,6 +32,6 @@
 	<a href = "<?=$userfilelink?>"> <?=(string)$userfilelink?> </a>
 	<br><br><br><br>
 	<button onclick="copy()" class = "btn1"> Copy to clipboard </button>
-	<button class = "btn1" type = "button" onclick = "history.go(-1)"> Home Page </button>
+	<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
 	</p>
 </div>

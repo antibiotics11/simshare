@@ -86,8 +86,8 @@
 		Create a password to encrypt your file.
 		</span>
 		<br><br>
-		<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password">
-		<input type = "password" name = "checksum" id = "checksum" minlength = "4" maxlength = "10" placeholder = "Reenter Password">
+		<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required>
+		<input type = "password" name = "checksum" id = "checksum" minlength = "4" maxlength = "10" placeholder = "Reenter Password" required>
 	</div>
 	
 	<!-- 파일 업로드 -->
@@ -109,7 +109,7 @@
 		-->
 		<br><br>
 		<button class = "btn1" type = "submit" onclick = "progress()"> Upload to simshare</button>
-		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Home Page </button>
+		<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
 	</div>
 	
 </form>
