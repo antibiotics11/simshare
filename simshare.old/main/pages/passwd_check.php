@@ -20,7 +20,7 @@
 			<br><br>
 			<span class = "exp">
 			The file you requested is encrypted. <br>
-			Enter the password to download your file. 
+			Enter your password to download your file. 
 			</span>
 			<br><br>
 			<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required>

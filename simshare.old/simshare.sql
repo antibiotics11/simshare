@@ -1,5 +1,5 @@
 /* simshare SQL 파일 */
-/* mysql 8.0 에서 작성되었습니다. */
+/* mysql 5.7 에서 작성되었습니다. */
 
 CREATE DATABASE `simshare`;
 USE `simshare`;
@@ -10,7 +10,6 @@ CREATE TABLE `clientfiles` (
 	`filename` char(255) NOT NULL,
 	`expdate` date NOT NULL,
 	`passwd` char(255) NULL,
-	`renew` int(1) NOT NULL,
 	`zip` int(1) NOT NULL,
 	PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

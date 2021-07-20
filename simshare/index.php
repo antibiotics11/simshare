@@ -74,7 +74,7 @@
 	<!-- 푸터 영역 -->
 	<div id = "footer">
 		<p> 
-		<a href = "https://www.kunsan.ac.kr">Kunsan National University 2021</a>
+		<a href = "https://<?=$_SERVER['SERVER_NAME']?>/?act=about">(c) 2021. simshare.xyz</a>
 		</p>
 	</div>
 </body>

@@ -17,7 +17,6 @@
 			<select name = "encrypt" onChange="showinputpasswd(this.value)">
 				<option value = "0"> None </option>
 				<option value = "1"> To AES-256 </option>
-				<option value = "2"> To SHA-512 </option>
 			</select> 
 			</td>
 		</tr>
@@ -27,8 +26,6 @@
 			<select name = "compress">
 				<option value = "0"> None </option>
 				<option value = "1"> To zip </option>
-				<option value = "2"> To 7zip </option>
-				<option value = "3"> To tar </option>
 			</select>
 			</td>
 		</tr>
@@ -39,7 +36,7 @@
 	<div id = "inputpasswd" style = "display: none;">
 		<br><br>
 		<span class = "exp">
-		Create a password to encrypt your file.
+		Create a password to encrypt your file with the AES-256 algorithm.
 		</span>
 		<br><br>
 		<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password">
@@ -55,8 +52,8 @@
 			<input type = "file" class = "inputfile" name = "clientfile" onchange = "showfilename(this.value)" style = "display: none;" required>
 		</label>
 		<br><br><br><br>
-		<button class = "btn1" type = "submit"> Upload to simshare</button>
-		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Home Page </button>
+		<button class = "btn1" type = "submit"> Upload File to simshare</button>
+		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
 	</div>
 	
 </form>

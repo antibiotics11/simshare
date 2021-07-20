@@ -2,7 +2,7 @@
 
 // 패스워드 입력창 출력 
 function showinputpasswd(value) {
-	if (value == 1 || value == 2) {
+	if (value == 1) {
 		document.getElementById("inputpasswd").style.display = "inline";
 		document.getElementById("passwd").setAttribute("required", true);
 		document.getElementById("checksum").setAttribute("required", true);

@@ -21,7 +21,7 @@
 	function errorpopup($message) {
 		echo "
 		<script type = 'text/javascript'>
-			alert('".(string)$message."');
+			alert('".$message."');
 			window.location.href = '../';
 		</script>
 		";
@@ -120,13 +120,15 @@
 		}
 		
 		// 파일 SHA-256으로 암호화 => openssl
-		if ((int)$selected_alg) {
+		if ((int)$selected_alg == 1) {
 			$file_contents = file_get_contents($filecreated);
 			$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
 			$content_encrypted = openssl_encrypt($file_contents, 'aes-256-cbc', $userpasswd, OPENSSL_RAW_DATA, $iv);
 			$fp = fopen($filecreated, 'r+');
 			fwrite($fp, $content_encrypted);
 			fclose($fp);
+		} else if ((int)$selected_alg == 2) {
+			
 		}
 		
 		// 파일 정보 db에 저장하고 파라미터로 사용자에게 전달
