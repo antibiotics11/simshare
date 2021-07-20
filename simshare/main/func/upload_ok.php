@@ -47,9 +47,9 @@
 		
 		// 업로드된 파일 정보 정리
 		$tmp_filename = $_FILES['clientfile']['name']; // 파일명
-		$file_name = $_FILES['clientfile']['name'];
+		$file_name = $tmp_filename;
 		$file_size = ($_FILES['clientfile']['size'] / (1024 * 1024)); // 파일 용량 
-		$selected_ext = (int)$_POST['compress']; // 압축 여부
+		$zipfile = (int)$_POST['compress']; // 압축 여부
 		$selected_alg = (int)$_POST['encrypt']; // 암호화 여부
 		$fileloc = '../../clientfiles/';
 		
@@ -74,8 +74,8 @@
 				exit;
 			} else {
 				// md5 해싱하고 sha256 해싱
-				$userpasswd_hased = (string)md5((string)$_POST['passwd']);
-				$userpasswd = substr(hash('sha256', (string)$userpasswd_hased, true), 0, 32);
+				$passwd_hash = password_hash((string)$_POST['passwd'], PASSWORD_DEFAULT);
+				$userpasswd = substr(hash('sha256', (string)$_POST['passwd'], true), 0, 32);
 			}
 		}
 		
@@ -109,26 +109,18 @@
 		$filecreated = $fileloc."/".$filecode;
 		move_uploaded_file($_FILES['clientfile']['tmp_name'], $filecreated);
 		
-		// 파일 압축여부 확인
-		if ($selected_ext) {
-			// 업로드시 압축 사용안함 => 다운로드시 압축해서 사용자에게 제공
-			#shell_exec("zip ".$fileloc.$filecode." ".$filecreated);
-			#rename ($filecreated.".zip", $filecreated);
-			$zipfile = 1;
-		} else {
-			$zipfile = 0;
-		}
-		
-		// 파일 SHA-256으로 암호화 => openssl
-		if ((int)$selected_alg == 1) {
+		// 파일 암호화
+		if ($selected_alg) {
 			$file_contents = file_get_contents($filecreated);
-			$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-			$content_encrypted = openssl_encrypt($file_contents, 'aes-256-cbc', $userpasswd, OPENSSL_RAW_DATA, $iv);
+			if ((int)$selected_alg == 1) {
+				$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
+				$content_encrypted = openssl_encrypt($file_contents, 'aes-256-cbc', $userpasswd, OPENSSL_RAW_DATA, $iv);
+			} else if ((int)$selected_alg == 2) {
+				// rsa 추가 예정
+			}
 			$fp = fopen($filecreated, 'r+');
 			fwrite($fp, $content_encrypted);
 			fclose($fp);
-		} else if ((int)$selected_alg == 2) {
-			
 		}
 		
 		// 파일 정보 db에 저장하고 파라미터로 사용자에게 전달
@@ -138,7 +130,7 @@
 		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
 		$encoding = "set names utf8;";
 		$set_encoding = mysqli_query($conn, $encoding);
-		$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$userpasswd_hased','$zipfile');";
+		$upload_sql = "insert into clientfiles values('$filecode','$file_name','$expdate','$passwd_hash','$zipfile');";
 		$upload_ok = mysqli_query($conn, $upload_sql);
 
 		header('Location: ../../index.php?filecode='.$filecode.'&expdate='.$expdate);

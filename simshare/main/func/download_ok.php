@@ -57,16 +57,15 @@
 		if (!isset($_POST['passwd'])) {
 			header('Location: ../pages/passwd_check.php?filecode='.$filecode);
 		}
-		$checkpasswd_hased = (string)md5((string)$_POST['passwd']);
-		$checkpasswd = substr(hash('sha256', (string)$checkpasswd_hased, true), 0, 32);
-		if ((string)$checkpasswd_hased != (string)$userpasswd) {
+		if (!password_verify((string)$_POST['passwd'], $userpasswd)) {
 			$message = "Incorrect Password";
 			errorpopup($message);
 			exit;
 		}
+		$passwd_hash = substr(hash('sha256', (string)$_POST['passwd'], true), 0, 32);
 		$file_contents = file_get_contents($filecreated);
 		$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
-		$content_decrypted = openssl_decrypt($file_contents, 'aes-256-cbc', (string)$checkpasswd, OPENSSL_RAW_DATA, $iv);
+		$content_decrypted = openssl_decrypt($file_contents, 'aes-256-cbc', (string)$passwd_hash, OPENSSL_RAW_DATA, $iv);
 		$fp = fopen($filecreated, 'r+');
 		fwrite($fp, $content_decrypted);
 		fclose($fp);
@@ -78,12 +77,22 @@
 	// 압축여부 확인하고 압축해서 제공
 	if ($zipfile) {
 		copy($filedownload, "./".$ori_filename);
-		shell_exec("zip ./".$filecode." ./".$ori_filename);
+		
+		if ($zipfile == 1) { 
+			shell_exec("zip ./".$filecode." ./".$ori_filename);
+			$zip_alg = "zip";
+		} else if ($zipfile == 2) {
+			shell_exec("tar jcf ./".$filecode.".tar.bz2 ./".$ori_filename);
+			$zip_alg = "tar.bz2";
+		} else if ($zipfile == 3) {
+			shell_exec("tar zcf ./".$filecode.".tar.gz ./".$ori_filename);
+			$zip_alg = "tar.gz";
+		}
 		unlink($filedownload);
-		copy("./".$filecode.".zip", "../../tmpfiles/".$filecode.".zip");
+		copy("./".$filecode.".".$zip_alg, "../../tmpfiles/".$filecode.".".$zip_alg);
 		unlink("./".$ori_filename);
-		unlink("./".$filecode.".zip");
-		$filedownload = "../../tmpfiles/".$filecode.".zip";
+		unlink("./".$filecode.".".$zip_alg);
+		$filedownload = "../../tmpfiles/".$filecode.".".$zip_alg;
 	}
 	
 	// 임시 디렉터리 파일 다운로드

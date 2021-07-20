@@ -7,6 +7,10 @@
 	<!--<meta name = "viewport" content = "width=device-width, initial-scale=1.0">-->
 	<meta property = "og:title" content = "simshare">
 	
+	<!--
+	<script src = "https://code.jquery.com/jquery.js"></script>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity = "sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin = "anonymous"></script>
+	-->
 	<link href = "/webfiles/main.css" rel = "stylesheet" type = "text/css">
 	<link href = "/webfiles/images/share.svg" rel = "shortcut icon" >
 	<link href = "https://fonts.gstatic.com"  rel = "preconnect">
@@ -74,7 +78,7 @@
 	<!-- 푸터 영역 -->
 	<div id = "footer">
 		<p> 
-		<a href = "https://<?=$_SERVER['SERVER_NAME']?>/?act=about">(c) 2021. simshare.xyz</a>
+		<a href = "https://<?=$_SERVER['SERVER_NAME']?>/?act=about">simshare project 2021</a>
 		</p>
 	</div>
 </body>

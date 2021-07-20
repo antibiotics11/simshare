@@ -5,8 +5,16 @@
 	$userfilelink = "https://".$_SERVER['SERVER_NAME']."/?download=".$_GET['filecode']; 
 ?>
 
-<script type = "text/javascript" src = "/main/pages/checkuploaded.js"></script>
 <script type = "text/javascript">
+	function copylink(val) {
+		const t = document.createElement("textarea");
+		document.body.appendChild(t);
+		t.value = val;
+		t.select();
+		document.execCommand('copy');
+		document.body.removeChild(t);
+	}
+
 	function copy() {
 		copylink('<?=$userfilelink?>');
 		alert('Link copied to clipboard');
@@ -14,7 +22,7 @@
 </script>
 
 <div id = "aboutpage">
-	<h2> File successfully uploaded to simshare! </h2>
+	<h2> Successfully uploaded to simshare! </h2>
 	<p> 
 	Your File Code: <span style = "color: #4caf50"><?=$_GET['filecode']?></span> 
 	<br><br>
@@ -23,7 +31,7 @@
 	File Download Link <br>
 	<a href = "<?=$userfilelink?>"> <?=(string)$userfilelink?> </a>
 	<br><br><br><br>
-	<button onclick="copy()" class = "btn1"> Copy link to clipboard </button>
-	<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
+	<button onclick="copy()" class = "btn1"> Copy to clipboard </button>
+	<button class = "btn1" type = "button" onclick = "history.go(-1)"> Home Page </button>
 	</p>
 </div>

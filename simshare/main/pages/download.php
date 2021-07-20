@@ -22,7 +22,7 @@
 		<input type = "text" name = "filecode" placeholder = "File code or Download link" required>
 		<br><br><br><br>
 		<button class = "btn1" type = "submit"> Download File </button>
-		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Previous Page </button>
+		<button class = "btn1" type = "button" onclick = "history.go(-1)"> Home Page </button>
 	</form>
 	</div>
 </div>
