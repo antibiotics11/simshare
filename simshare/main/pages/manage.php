@@ -34,9 +34,7 @@
 		<br><br>
 		<div id = "inputpasswd">
 			<input type = "text" name = "filecode" placeholder = "File code" required>
-			<br><br>
 			<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required>
-			<input type = "password" name = "checksum" id = "checksum" minlength = "4" maxlength = "10" placeholder = "Reenter Password" required>
 		</div>
 		<br><br><br><br>
 		<button class = "btn1" type = "submit"> Delete </button>

@@ -5,7 +5,7 @@
 	$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
 	$encoding = "set names utf8;";
 	mysqli_query($conn, $encoding);
-
+	
 	function errorpopup($message) {
 		echo "
 		<script type = 'text/javascript'>
@@ -16,6 +16,7 @@
 		return 0;
 	}
 	
+	// 파일코드, 인덱스 받아서 db 레코드 리턴
 	function getdbrecord($filecode, $requested) {
 		global $hostname;
 		global $dbuserid;
@@ -31,6 +32,7 @@
 		}
 	}
 	
+	// 파일 연장
 	function extendfile($filecode) {
 		global $conn;
 		if (getdbrecord($filecode, "renew")) {
@@ -60,10 +62,31 @@
 		return 0;
 	}
 	
+	// 파일 삭제
 	function deletefile($filecode, $passwd) {
+		global $conn;
+		$userpasswd = getdbrecord($filecode, "passwd");
+		if (!password_verify((string)$passwd, $userpasswd)) {
+			$message = "Incorrect Password";
+			errorpopup($message);
+			exit;
+		}
+		$del_sql = "delete from clientfiles where code='$filecode';";
+		mysqli_query($conn, $del_sql);
+		unlink('../../clientfiles/'.$filecode);
 		
+		$message = "File successfully removed.";
+		echo "
+		<script type = 'text/javascript'>
+			alert('".(string)$message."');
+			location.href = '/';
+		</script>
+		";
+		
+		return 0;
 	}
 	
+	// 파일 없으면 종료
 	$filecreated = "../../clientfiles/".$_POST['filecode'];
 	if (isset($_POST['filecode'])) {
 		if (!file_exists($filecreated)) {
@@ -75,9 +98,9 @@
 	
 	$filecode = $_POST['filecode'];
 	
-	if (isset($_POST['passwd']) && isset($_POST['checksum'])) {
-		deletefile($filecode);
+	if (isset($_POST['passwd'])) {
+		deletefile($filecode, $_POST['passwd']);
 	} else {
-		extendfile($filecode, $_POST['passwd']);
+		extendfile($filecode);
 	}
 ?>

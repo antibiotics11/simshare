@@ -78,7 +78,7 @@
 	<!-- 푸터 영역 -->
 	<div id = "footer">
 		<p> 
-		<a href = "https://<?=$_SERVER['SERVER_NAME']?>/?act=about">simshare project 2021</a>
+		<a href = "https://<?=$_SERVER['SERVER_NAME']?>/?act=about">(c) simshare.xyz 2021, About Project</a>
 		</p>
 	</div>
 </body>

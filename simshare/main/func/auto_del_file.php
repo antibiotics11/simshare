@@ -17,7 +17,7 @@
 			if ((int)$datetoday > (int)$uploaddate) {
 				unlink('../../clientfiles/'.$datelist['code']);
 				$del_sql = "delete from clientfiles where code='".$datelist['code']."';";
-				$del_ok = mysqli_query($conn, $del_sql);
+				mysqli_query($conn, $del_sql);
 			}
 		}
 		

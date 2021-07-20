@@ -52,7 +52,6 @@
 	$filecreated = "../../tmpfiles/".$filecode;
 	
 	// 패스워드 확인 후 임시 디렉터리 파일 복호화
-	
 	if (isset($encrypted)) {
 		if (!isset($_POST['passwd'])) {
 			header('Location: ../pages/passwd_check.php?filecode='.$filecode);
