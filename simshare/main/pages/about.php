@@ -8,15 +8,15 @@
 </script>
 <?php
 	if ((string)$_GET['lang'] == "ko") {
-		$about1 = "simshare는 군산대학교 컴퓨터정보통신공학부 학생이 웹개발 과제로 개발한 웹앱입니다.";
-		$about2 = "소스코드는 MIT 라이선스로 배포됩니다.";
-		$about3 = "200mb 이하 용량의 파일을 simshare 서버에 업로드해두고 일주일 이내 언제든지 다운받을 수 있습니다.";
-		$about4 = "파일 업로드시 암호화 / 압축 옵션을 선택할 수 있습니다.";
+		$about1 = "군산대학교 웹개발 과제로 개발되었으며, 현재는 개인 프로젝트로 진행하고 있습니다.";
+		$about2 = "";
+		$about3 = "최대 200mb 용량의 파일을 업로드하고 공유할 수 있습니다.";
+		$about4 = "";
 	} else {
-		$about1 = "simshare was developed as part of web programming project at the Kunsan National University.";
-		$about2 = "Source code is deployed under the MIT license.";
-		$about3 = "You can upload a file with less than 200mb to the simshare server and download it at any time within a week.";
-		$about4 = "When uploading a file, you can encrypt or compress your file.";
+		$about1 = "It was initially developed as part of web programming project at the Kunsan National University, but is now being developed as a personal project.";
+		$about2 = "";
+		$about3 = "You can upload a file up to 200mb, and share it with others.";
+		$about4 = "";
 	}
 ?>
 
