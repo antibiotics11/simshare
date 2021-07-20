@@ -28,7 +28,7 @@ When uploading a file, you can encrypt or compress your file.
 
 ### 시스템 정보
 
-도메인: <a href = "https://simshare.xyz">simshare.xyz</a>
+도메인: <a href = "https://old.simshare.xyz">old.simshare.xyz</a>
 <br><br>
 O/S: Ubuntu Server 20.04 LTS <br>
 Host: South Korea, <a href = "https://iwinv.kr/">iwinv</a> <br>
