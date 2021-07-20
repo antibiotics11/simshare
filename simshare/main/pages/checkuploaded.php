@@ -26,9 +26,9 @@
 	<p> 
 	Your File Code: <span style = "color: #4caf50"><?=$_GET['filecode']?></span> 
 	<br><br>
-	File Expiration Date: <?=$_GET['expdate']?> 00:00
+	Expiry Date: <?=$_GET['expdate']?> 00:00
 	<br><br>
-	File Download Link <br>
+	Download Link <br>
 	<a href = "<?=$userfilelink?>"> <?=(string)$userfilelink?> </a>
 	<br><br><br><br>
 	<button onclick="copy()" class = "btn1"> Copy to clipboard </button>

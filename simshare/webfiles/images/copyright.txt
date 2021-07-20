@@ -2,10 +2,10 @@
 https://www.flaticon.com/free-icon/share_1828609?term=share&related_id=1828609
 
 "plus.png" from flaticon:
-https://www.flaticon.com/free-icon/plus_1828819?term=plus&related_id=1828819
+https://www.flaticon.com/free-icon/plus_148764
 
 "arrow.png" from flaticon:
 https://www.flaticon.com/free-icon/left-arrow_892641?related_id=892641
 
-"ksnu.png" from Kunsan National University:
-https://www.kunsan.ac.kr
+"warning.png" from flaticon:
+https://www.flaticon.com/free-icon/warning_1828895

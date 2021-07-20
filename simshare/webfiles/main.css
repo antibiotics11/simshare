@@ -89,7 +89,7 @@ body {
 	width: 110px;
 }
 
-#uploadform .exp {
+#uploadform .exp, #manageform .exp {
 	color: #4caf50;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 130%;
@@ -145,6 +145,17 @@ body {
 	appearance: none;
 	text-align: center;
 	background-color: #ecefef;
+}
+
+#deletefile a {
+	color: #4caf50;
+	font-size: 115%;
+	text-decoration: none;
+}
+
+#deletefile a:hover {
+	position: relative;
+	bottom: 1.2px;
 }
 
 /* --- error 페이지 --- */
