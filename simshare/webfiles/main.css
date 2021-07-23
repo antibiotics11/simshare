@@ -1,12 +1,10 @@
-/* 메인 스타일시트 */
+@charset "UTF-8";
 
 body {
 	background-color: #f7f8f9;
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 }
-
-/* 헤더 영역 */
 
 #header {
 	background-color: #f1f3f4;
@@ -16,12 +14,223 @@ body {
 	z-index: 1;
 }
 
-#header table {
-	margin-left: 15%;
-}
-
 .simshare_icon {
 	text-align: left;
+}
+
+.simshare_title h1 a {
+	color: black;
+	text-decoration: none;
+	cursor: default;
+}
+
+@media screen and (max-width:969px) {
+/* 헤더 영역 */
+
+#header table {
+	margin-left: 4%;
+}
+
+.simshare_icon img {
+	height: 20px;
+}
+
+.simshare_title {
+	text-align: left;
+	margin-left: 12px;
+}
+
+.simshare_title h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 130%;
+}
+
+/* 콘텐츠 영역 */
+
+#contents {
+	padding-top: 55px;
+	padding-bottom: 57px;
+	text-align: center;
+}
+
+#contents table {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+#selectaction {
+	width: 90%; 
+	font-family: 'Montserrat', sans-serif;
+}
+
+#selectaction td {
+	width: 90%;
+	height: 45%;
+	display: block;
+}
+
+#recv_file, #send_file, #about {
+	cursor: pointer;
+	background-color: #f1f3f4;
+	border-radius: 40px 40px;
+	width: 100%;
+	height: 100%;
+	margin: 5%;
+	padding-bottom: 4%;
+}
+
+#send_file:hover, #recv_file:hover, #about:hover {
+	border: 2px solid #4caf50;
+}
+
+#contents table p {
+	font-size: 120%;
+}
+
+#icon_space {
+	text-align: center;
+}
+
+#icon_space img {
+	width: 110px;
+}
+
+#uploadform .exp, #manageform .exp {
+	color: #4caf50;
+	font-family: 'Montserrat', sans-serif;
+	font-size: %;
+}
+
+#uploadform select, #uploadform #inputpasswd input {
+	width: 187px;
+	appearance: none;
+	padding: .8em .5em;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	border: 2px solid #4caf50;
+	margin-bottom: 2%;
+	text-align: center;
+	cursor: pointer;
+}
+
+.filepathbox {
+	width: 187px;
+    padding: .8em .5em;
+	font-family: consolas;
+    border: 3px solid #4caf50;
+	cursor: pointer;
+}
+
+#aboutpage #langsel {
+	font-size: 14px;
+	border: 2px solid #4caf50;
+	appearance: none;
+	text-align: center;
+	background-color: #ecefef;
+}
+
+#deletefile a {
+	color: #4caf50;
+	font-size: 95%;
+	text-decoration: none;
+}
+
+#deletefile a:hover {
+	position: relative;
+	bottom: 1px;
+}
+
+/* --- error 페이지 --- */
+
+#errorpage, #aboutpage {
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	margin-top: 15px;
+}
+
+#errorpage h2, #aboutpage h2 {
+	color: #4caf50;
+	font-size: 125%;
+}
+
+#errorpage p, #aboutpage p {
+	color: black;
+	font-size: 97%;
+}
+
+/* 푸터 영역 */
+
+#footer {
+	background-color: #f1f3f4;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	position: fixed;
+	padding-top: 2px;
+	height: 54px;
+}
+
+#footer p {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 90%;
+}
+
+#footer p a {
+	text-decoration: none;
+	color: inherit;
+	cursor: default;
+}
+
+/* 공통 요소 */
+
+.btn1 {
+	margin-bottom: 2%;
+	border-radius: 60px;
+	font-family: 'Montserrat', sans-serif;
+	color: #4caf50;
+	font-size: 18px;
+	background: #f7f8f9;
+	padding: 10px 20px 10px 20px;
+	border: solid #f1f3f4 1px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btn1:hover {
+	background: #f1f3f4;
+	text-decoration: none;
+}
+
+.btn2 {
+	margin-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 150px;
+	border-radius: 20px;
+	font-family: 'Montserrat', sans-serif;
+	color: #f7f8f9;
+	font-size: 18px;
+	background: #4caf50;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btn2:hover {
+	position: relative;
+	top: 1px;
+	text-decoration: none;
+}
+
+}
+
+@media screen and (min-width:970px) {
+/* 헤더 영역 */
+
+#header table {
+	margin-left: 15%;
 }
 
 .simshare_icon img {
@@ -36,12 +245,6 @@ body {
 .simshare_title h1 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 250%;
-}
-
-.simshare_title h1 a {
-	color: black;
-	text-decoration: none;
-	cursor: default;
 }
 
 /* 콘텐츠 영역 */
@@ -63,6 +266,11 @@ body {
 	width: 75%; 
 	height: 500px;
 	font-family: 'Montserrat', sans-serif;
+}
+
+#selectaction td {
+	height: 100%;
+	width: 25%;
 }
 
 #recv_file, #send_file, #about {
@@ -114,31 +322,6 @@ body {
 	cursor: pointer;
 }
 
-#about #magnifying-glass {
-	font-size: 10em;
-	display: inline-block;
-	width: 0.4em;
-	box-sizing: content-box;
-	box-sizing: content-box;
-	height: 0.4em;
-	border: 0.1em solid #4caf50;
-	position: relative;
-	border-radius: 0.35em;
-}
-	
-#about #magnifying-glass:before {
-	content: "";
-	display: inline-block;
-	right: -0.25em;
-	bottom: -0.1em;
-	border-width: 0;
-	background: #4caf50;
-	width: 0.35em;
-	height: 0.08em;
-	transform: rotate(45deg);
-	position: absolute;
-}
-
 #aboutpage #langsel {
 	font-size: 14px;
 	border: 2px solid #4caf50;
@@ -177,7 +360,30 @@ body {
 	font-size: 120%;
 }
 
-/* --- 공통 요소 --- */
+/* 푸터 영역 */
+
+#footer {
+	background-color: #f1f3f4;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	position: fixed;
+	padding-top: 2px;
+	height: 90px;
+}
+
+#footer p {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 130%;
+}
+
+#footer p a {
+	text-decoration: none;
+	color: inherit;
+	cursor: default;
+}
+
+/* 공통 요소 */
 
 .btn1 {
 	border-radius: 60px;
@@ -213,25 +419,4 @@ body {
 	text-decoration: none;
 }
 
-/* 푸터 영역 */
-
-#footer {
-	background-color: #f1f3f4;
-	width: 100%;
-	bottom: 0;
-	text-align: center;
-	position: fixed;
-	padding-top: 2px;
-	height: 90px;
-}
-
-#footer p {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 130%;
-}
-
-#footer p a {
-	text-decoration: none;
-	color: inherit;
-	cursor: default;
 }

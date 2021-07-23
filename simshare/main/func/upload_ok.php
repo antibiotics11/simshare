@@ -1,7 +1,7 @@
 <?php 
 	// 서버에 파일 업로드를 처리하는 php 파일
 	
-	ini_set('memory_limit','256M');
+	ini_set("memory_limit","256M");
 
 	// 파일에 부여할 랜덤 코드 생성 함수
 	function randstring($length) {  
@@ -28,10 +28,10 @@
 		return 0;
 	}
 	
-	if (is_uploaded_file($_FILES['clientfile']['tmp_name'])) {
+	if (is_uploaded_file($_FILES["clientfile"]["tmp_name"])) {
 		
 		// 기한 만료된 파일 삭제
-		include_once './auto_del_file.php';
+		include_once "./auto_del_file.php";
 		autodel();
 		
 		// 디스크 사용 용량 제한
@@ -100,13 +100,20 @@
 		}
 		
 		// 파일 랜덤 코드 생성, 중복 방지
-		$checkifexist = 1;
-		while ($checkifexist) {
+		$check_if_exist = 1;
+		$code_gen_error = 0;
+		while ($check_if_exist) {
 			$filecode = randstring(6);
 			if (!file_exists($filecode)) {
-				unset($checkifexist);
+				unset($check_if_exist);
 			} else {
-				$checkifexist = 1;
+				$check_if_exist = 1;
+				$code_gen_error++;
+			}
+			
+			if ($code_gen_error >= 20) {
+				$message = "Unknown error occured. Please contact to server admin";
+				errorpopup($message);
 			}
 		}
 		
@@ -131,7 +138,8 @@
 		// 파일 정보 db에 저장하고 파라미터로 사용자에게 전달
 		$timestamp = strtotime("+1 week");
 		$expdate = date("Y-m-d", $timestamp);
-		include './db.php';
+		
+		include "./db.php";
 		$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
 		$encoding = "set names utf8;";
 		$set_encoding = mysqli_query($conn, $encoding);

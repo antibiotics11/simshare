@@ -1,6 +1,3 @@
-/* simshare SQL 파일 */
-/* mysql 8.0 에서 작성되었습니다. */
-
 CREATE DATABASE `simshare`;
 USE `simshare`;
 DROP TABLE IF EXISTS `clientfiles`;

@@ -3,32 +3,39 @@
 <html lang = "ko">
 <head>
 	<meta http-equiv = "content-type" content = "text/html" charset = "utf-8">
-	<title> simshare </title>
-	<!--<meta name = "viewport" content = "width=device-width, initial-scale=1.0">-->
+	<!-- <meta name = "viewport" content = "width=device-width"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+	<meta name = "title" content = "simshare">
+	<meta name = "description" content = "Simple File Sharing Site">
 	<meta property = "og:title" content = "simshare">
+	<meta property = "og:description" content = "Simple File Sharing Site">
+	<meta property = "og:url" content = "simshare.xyz">
+	<meta property = "og:type" content = "website">
 	
 	<!--
 	<script src = "https://code.jquery.com/jquery.js"></script>
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity = "sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin = "anonymous"></script>
 	-->
 	<link href = "/webfiles/main.css" rel = "stylesheet" type = "text/css">
-	<link href = "/webfiles/images/share.svg" rel = "shortcut icon" >
+	<link href = "/webfiles/images/share.svg" rel = "shortcut icon">
 	<link href = "https://fonts.gstatic.com"  rel = "preconnect">
 	<link href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel = "stylesheet"> 
 	<?php
 		// 웹브라우저가 IE일 경우 에러페이지 출력
 		$userbrowser = $_SERVER["HTTP_USER_AGENT"];
 		if(strpos($userbrowser,"MSIE") !== false || strpos($userbrowser,"Trident") !== false) {
-			if ((string)$_GET['check'] != 'y') {
-				header('Location: ./?error=ie&check=y');
+			if ((string)$_GET["check"] != "y") {
+				header("Location: ./?error=ie&check=y");
 			}
+		}
+		
+		if (strlen($_SERVER["QUERY_STRING"] > 140)) {
+			exit;
 		}
 	?>
 </head>
 
 <body>
-
-	<!-- 헤더 영역 -->
 	<div id = "header">
 		<table style = "width: 20%;">
 		<tr>
@@ -50,10 +57,10 @@
 		</table>
 	</div>
 	
-	<!-- 콘텐츠 영역 -->
 	<div id = "contents">
 	<?php
 		// act값에 따라 필요한 파일 호출
+	// act값에 따라 필요한 파일 호출
 		if (isset($_GET['act'])) {
 			require_once './main/pages/'.$_GET['act'].'.php';
 		} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
@@ -75,10 +82,9 @@
 	?>
 	</div>
 	
-	<!-- 푸터 영역 -->
 	<div id = "footer">
 		<p> 
-		<a href = "https://<?=$_SERVER['SERVER_NAME']?>/?act=about">(c) simshare.xyz 2021, About Project</a>
+		<a href = "https://<?=$_SERVER["SERVER_NAME"]?>/?act=about">(c) simshare.xyz 2021, About Project</a>
 		</p>
 	</div>
 </body>

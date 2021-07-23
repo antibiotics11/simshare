@@ -16,6 +16,18 @@
 		"docx",
 		"pptx",
 		"ppt",
-		"pdf"
+		"pdf",
+		"xls",
+		"xlsx",
+		"csv",
+		"rtf",
+		"zip",
+		"alz",
+		"mpg",
+		"flv",
+		"avi",
+		"ogg",
+		"wav",
+		"mov"
 	);
 ?>
