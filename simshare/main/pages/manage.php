@@ -7,19 +7,19 @@
 	?>
 		<br><br>
 		<span class = "exp">
-		The expiry date can be extended up to 3 times. 
+		<?=$extend_exp?>
 		</span>
 		<br><br>
 		<div id = "inputpasswd">
 			<input type = "text" name = "filecode" placeholder = "File code" required>
 		</div>
 		<br><br><br>
-		<button class = "btn1" type = "submit"> Extend </button>
-		<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
+		<button class = "btn1" type = "submit"> <?=$extend?> </button>
+		<button class = "btn1" type = "button" onclick = "location.href='/'"> <?=$homepage?> </button>
 		<br><br><br>
 		<div id = "deletefile">
 			<a href = "./?act=manage&manage=delete">
-			Want to delete file?
+			<?=$delete_file?>
 			</a>
 		</div>
 	<?php 
@@ -27,9 +27,9 @@
 	?>
 		<br><br>
 		<span class = "exp">
-		Deleting file permanently removes your file from the simshare server. 
+		<?=$del_exp1?>
 		<br><br>
-		This cannot be undone. please be certain.
+		<?=$del_exp2?>
 		</span>
 		<br><br>
 		<div id = "inputpasswd">
@@ -37,8 +37,8 @@
 			<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required>
 		</div>
 		<br><br><br><br>
-		<button class = "btn1" type = "submit"> Delete </button>
-		<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
+		<button class = "btn1" type = "submit"> <?=$del_ok?> </button>
+		<button class = "btn1" type = "button" onclick = "location.href='/'"> <?=$homepage?> </button>
 	<?php
 		}
 	?>

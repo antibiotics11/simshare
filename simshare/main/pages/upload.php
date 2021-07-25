@@ -1,8 +1,6 @@
 <!-- 파일 업로드 페이지 -->
 
 <div id = "uploadform">
-<?php ?>
-<script type = "text/javascript" src = "/main/func/alponly.js"></script>
 <script type = "text/javascript">
 	// 패스워드 입력창 출력 
 	function showinputpasswd(value) {
@@ -11,7 +9,7 @@
 			document.getElementById("passwd").setAttribute("required", true);
 			document.getElementById("checksum").setAttribute("required", true);
 		} else {
-			if (confirm("Selecting this option may allow third parties to access your files. \nDo you still want to proceed? ")) {
+			if (confirm("<?=$encrypt_confirm?>")) {
 				document.getElementById("inputpasswd").style.display = "none";
 				document.getElementById("passwd").removeAttribute("required");
 				document.getElementById("checksum").removeAttribute("required");
@@ -56,7 +54,7 @@
 	<div style = "display: block;">
 		<table>
 		<tr>
-			<td class = "exp"> Encrypt File &nbsp;&nbsp;&nbsp;</td>
+			<td class = "exp"> <?=$encrypt_file?> &nbsp;&nbsp;&nbsp;</td>
 			<td>
 			<select name = "encrypt" id = "encrypt" onChange="showinputpasswd(this.value)">
 				<option value = "1"> To AES-256 </option>
@@ -66,7 +64,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class = "exp"> Compress File &nbsp;&nbsp;&nbsp;</td>
+			<td class = "exp"> <?=$compress_file?> &nbsp;&nbsp;&nbsp;</td>
 			<td>
 			<select name = "compress">
 				<option value = "1"> To zip </option>
@@ -83,7 +81,7 @@
 	<div id = "inputpasswd" style = "display: inline;">
 		<br><br>
 		<span class = "exp">
-		Create a password to encrypt your file.
+		<?=$encrypt_exp?>
 		</span>
 		<br><br>
 		<input type = "password" name = "passwd" id = "passwd" minlength = "4" maxlength = "10" placeholder = "Password" required>
@@ -95,7 +93,7 @@
 		<br><br> 
 		<input type = "text" id = "filename" class = "filepathbox" placeholder = " File Name" readonly>
 		&nbsp;&nbsp;
-		<label class = "btn2"> Browse File
+		<label class = "btn2"> <?=$browse_file?>
 
 			<input type = "file" class = "inputfile" id = "inputfile" name = "clientfile" onchange = "showfilename()" style = "display: none;" required>
 		</label>
@@ -108,8 +106,8 @@
 		</div>
 		-->
 		<br><br>
-		<button class = "btn1" type = "submit" onclick = "progress()"> Upload to simshare</button>
-		<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
+		<button class = "btn1" type = "submit" onclick = "progress()"> <?=$upload_ok?> </button>
+		<button class = "btn1" type = "button" onclick = "location.href='/'"> <?=$homepage?> </button>
 	</div>
 	
 </form>

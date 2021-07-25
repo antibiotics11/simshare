@@ -15,14 +15,12 @@
 	<div id = "inputpasswd">
 	<form action = "./?act=download" method = "POST">
 		<br><br>
-		<span class = "exp">
-		Enter the file code or download link.
-		</span>
+		<span class = "exp"> <?=$download_exp?> </span>
 		<br><br>
 		<input type = "text" name = "filecode" placeholder = "File code or Download link" required>
 		<br><br><br><br>
-		<button class = "btn1" type = "submit"> Download File </button>
-		<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
+		<button class = "btn1" type = "submit"> <?=$download_file?> </button>
+		<button class = "btn1" type = "button" onclick = "location.href='/'"> <?=$homepage?> </button>
 	</form>
 	</div>
 </div>

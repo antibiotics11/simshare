@@ -13,7 +13,7 @@
 		}
 		*/
 		
-		// 언어 파일 호출
+		// 브라우저 설정 확인해서 언어 파일 호출
 		$client_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
 		if ($client_lang == "ko-KR" || $client_lang == "ko") {
 			include __DIR__."/webfiles/lang/ko.php";

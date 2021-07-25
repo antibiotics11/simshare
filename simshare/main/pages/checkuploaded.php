@@ -22,16 +22,16 @@
 </script>
 
 <div id = "aboutpage">
-	<h2> Successfully uploaded to simshare! </h2>
+	<h2> <?=$upload_success?> </h2>
 	<p> 
-	Your File Code: <span style = "color: #4caf50"><?=$_GET['filecode']?></span> 
+	<?=$code_exp?> <span style = "color: #4caf50"><?=$_GET['filecode']?></span> 
 	<br><br>
-	Expiry Date: <?=$_GET['expdate']?> 00:00
+	<?=$date_exp?> <?=$_GET['expdate']?> 00:00
 	<br><br>
-	Download Link <br>
+	<?=$link_exp?> <br>
 	<a href = "<?=$userfilelink?>"> <?=(string)$userfilelink?> </a>
 	<br><br><br><br>
-	<button onclick="copy()" class = "btn1"> Copy to clipboard </button>
-	<button class = "btn1" type = "button" onclick = "location.href='/'"> Home Page </button>
+	<button onclick="copy()" class = "btn1"> <?=$copy_clipboard?> </button>
+	<button class = "btn1" type = "button" onclick = "location.href='/'"> <?=$homepage?> </button>
 	</p>
 </div>
