@@ -2,13 +2,36 @@
 
 <html lang = "ko">
 <head>
+	<?php
+		// 웹브라우저가 IE일 경우 에러페이지 출력
+		/*
+		$user_browser = $_SERVER["HTTP_USER_AGENT"];
+		if(strpos($user_browser,"MSIE") !== false || strpos($u1,2,ser_browser,"Trident") !== false) {
+			if ((string)$_GET["check"] != "y") {
+				header("Location: ".__DIR__."/?error=ie&check=y");
+			}
+		}
+		*/
+		
+		// 언어 파일 호출
+		$client_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
+		if ($client_lang == "ko-KR" || $client_lang == "ko") {
+			include __DIR__."/webfiles/lang/ko.php";
+		} else {
+			include __DIR__."/webfiles/lang/en.php";
+		}
+		
+		// 해킹 의심시 접속차단
+		if (strlen($_SERVER["QUERY_STRING"] > 140)) {
+			exit;
+		}
+	?>
 	<meta http-equiv = "content-type" content = "text/html" charset = "utf-8">
-	<!-- <meta name = "viewport" content = "width=device-width"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
-	<meta name = "title" content = "simshare">
-	<meta name = "description" content = "Simple File Sharing Site">
-	<meta property = "og:title" content = "simshare">
-	<meta property = "og:description" content = "Simple File Sharing Site">
+	<title><?=$meta_title?></title>
+	<meta name = "description" content = "<?=$meta_description?>">
+	<meta property = "og:title" content = "<?=$meta_title?>">
+	<meta property = "og:description" content = "<?=$meta_description?>">
 	<meta property = "og:url" content = "simshare.xyz">
 	<meta property = "og:type" content = "website">
 	
@@ -20,19 +43,6 @@
 	<link href = "/webfiles/images/share.svg" rel = "shortcut icon">
 	<link href = "https://fonts.gstatic.com"  rel = "preconnect">
 	<link href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel = "stylesheet"> 
-	<?php
-		// 웹브라우저가 IE일 경우 에러페이지 출력
-		$userbrowser = $_SERVER["HTTP_USER_AGENT"];
-		if(strpos($userbrowser,"MSIE") !== false || strpos($userbrowser,"Trident") !== false) {
-			if ((string)$_GET["check"] != "y") {
-				header("Location: ./?error=ie&check=y");
-			}
-		}
-		
-		if (strlen($_SERVER["QUERY_STRING"] > 140)) {
-			exit;
-		}
-	?>
 </head>
 
 <body>
@@ -59,7 +69,6 @@
 	
 	<div id = "contents">
 	<?php
-		// act값에 따라 필요한 파일 호출
 	// act값에 따라 필요한 파일 호출
 		if (isset($_GET['act'])) {
 			require_once './main/pages/'.$_GET['act'].'.php';
