@@ -12,6 +12,8 @@ You can upload a file up to 200mb, and share it with others.
 <b>Host:</b> South Korea, <a href = "https://iwinv.kr/">iwinv</a> <br>
 <b>LAMP:</b> Apache HTTP Server 2.4 / PHP 7.4 / MySQL 8.0 
 
+<b>한국어 베타 버전:</b> <a href = "https://beta.simshare.xyz">beta.simshare.xyz</a>
+
 ## Screenshot
 
 ![1](https://user-images.githubusercontent.com/75349747/126364513-fd76d311-796f-4257-b96c-e41e364ddbda.PNG)
