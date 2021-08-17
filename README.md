@@ -1,18 +1,23 @@
 # simshare
 
-## About
+## Info
 
-It was initially developed as part of web programming project at the Kunsan National University, but is now being developed as a personal project.
+### English
+
+You can upload a file up to 200mb to the simshare server, and download or share it with others.
+
+<a href = "https://simshare.xyz">https://simshare.xyz</a><br>
+
+It was initially developed as part of web programming project at the <a href = "https://www.kunsan.ac.kr/en/index.kunsan">Kunsan National University</a>, is now being developed as a personal project.
 <br>* Please refer to <a href = "https://github.com/antibiotics11/simshare/blob/main/README.old.md">README.old.md</a>
 
-You can upload a file up to 200mb, and share it with others.
 
-<b>Address:</b> <a href = "https://simshare.xyz">simshare.xyz</a> <br>
+### System Info
+
 <b>O/S:</b> Ubuntu Server 20.04 LTS <br>
-<b>Host:</b> South Korea, <a href = "https://iwinv.kr/">iwinv</a> <br>
-<b>LAMP:</b> Apache HTTP Server 2.4 / PHP 7.4 / MySQL 8.0 
-
-<b>한국어 베타 버전:</b> <a href = "https://beta.simshare.xyz">beta.simshare.xyz</a>
+<b>Host:</b> South Korea, <a href = "https://iwinv.kr/">iwinv cloud</a> <br>
+<b>LAMP:</b> Apache HTTP Server 2.4 / PHP 7.4 / MySQL 8.0 <br>
+<b>한국어 베타:</b> <a href = "https://beta.simshare.xyz">https://beta.simshare.xyz</a>
 
 ## Screenshot
 
