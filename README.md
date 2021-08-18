@@ -17,7 +17,6 @@ It was initially developed as part of web programming project at the <a href = "
 <b>O/S:</b> Ubuntu Server 20.04 LTS <br>
 <b>Host:</b> South Korea, <a href = "https://iwinv.kr/">iwinv cloud</a> <br>
 <b>LAMP:</b> Apache HTTP Server 2.4 / PHP 7.4 / MySQL 8.0 <br>
-<b>한국어 베타:</b> <a href = "https://beta.simshare.xyz">https://beta.simshare.xyz</a>
 
 ## Screenshot
 
