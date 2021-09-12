@@ -1,7 +1,6 @@
 <?php
 	
 	include_once "./db.php";
-	
 	$conn = mysqli_connect("$hostname","$dbuserid","$dbpasswd","simshare");
 	$encoding = "set names utf8;";
 	mysqli_query($conn, $encoding);
@@ -54,7 +53,7 @@
 			</script>
 			";
 		} else {
-			$message = "This file cannot be extended any longer. ";
+			$message = "This file cannot be extended any longer.";
 			errorpopup($message);
 			exit;
 		}
@@ -66,6 +65,11 @@
 	function deletefile($filecode, $passwd) {
 		global $conn;
 		$userpasswd = getdbrecord($filecode, "passwd");
+		if (empty($userpasswd) || !isset($userpasswd)) {
+			$message = "Password is not set for this file. Please contact to website admin.";
+			errorpopup($message);
+			exit;
+		}
 		if (!password_verify((string)$passwd, $userpasswd)) {
 			$message = "Incorrect Password";
 			errorpopup($message);
@@ -87,9 +91,9 @@
 	}
 	
 	// 파일 없으면 종료
-	$filecreated = "../../clientfiles/".$_POST['filecode'];
+	$fileloc = "../../clientfiles/".$_POST['filecode'];
 	if (isset($_POST['filecode'])) {
-		if (!file_exists($filecreated)) {
+		if (!file_exists($fileloc) || empty($_POST['filecode'])) {
 			$message = "No matching file found";
 			errorpopup($message);
 			exit;

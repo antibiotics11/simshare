@@ -17,6 +17,7 @@
 	<p> 
 	<?=$about3?><br>
 	<?=$about4?>
+	<a href = "https://<?=$_SERVER["SERVER_NAME"]?>/?act=manual"> User Manual </a>
 	</p>
 
 	<h2> Contact </h2>
@@ -26,23 +27,5 @@
 	<p> [Visit GitHub]&nbsp;
 	<a href = "https://github.com/antibiotics11"> https://github.com/antibiotics11 </a>
 	</p>
-	<!--
-	* 브라우저 언어 설정을 사용함
-	<span style = "color: #4caf50;"> <b>Select Language</b> </span>&nbsp;
-	<select id = "langsel" name = "select" onchange = "langsel(this.value)">
-<?php 
-	if ((string)$_GET['lang'] == "ko") {
-		echo "
-		<option value = \"ko\"> 한국어 </option>
-		<option value = \"en\"> English </option>
-		";
-	} else {
-		echo "
-		<option value = \"en\"> English </option>
-		<option value = \"ko\"> 한국어 </option>
-		";
-	}
-?>
-	</select>
-	-->
+
 </div>

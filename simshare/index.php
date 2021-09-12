@@ -4,14 +4,12 @@
 <head>
 	<?php
 		// 웹브라우저가 IE일 경우 에러페이지 출력
-		/*
 		$user_browser = $_SERVER["HTTP_USER_AGENT"];
 		if(strpos($user_browser,"MSIE") !== false || strpos($u1,2,ser_browser,"Trident") !== false) {
 			if ((string)$_GET["check"] != "y") {
 				header("Location: ".__DIR__."/?error=ie&check=y");
 			}
 		}
-		*/
 		
 		// 브라우저 설정 확인해서 언어 파일 호출
 		$client_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
@@ -59,6 +57,11 @@
 				<h1> 
 				<a href = "/">
 				sim<span style = "color: #4caf50;">share</span>
+				<?php
+					if (strpos($_SERVER["SERVER_NAME"], "beta") !== False) {
+						echo "BETA";
+					}
+				?>
 				</a> 
 				</h1>
 			</div>
@@ -69,22 +72,30 @@
 	
 	<div id = "contents">
 	<?php
-	// act값에 따라 필요한 파일 호출
+		// act값과 일치하는 페이지 호출
 		if (isset($_GET['act'])) {
-			require_once './main/pages/'.$_GET['act'].'.php';
+			if (file_exists('./main/pages/'.$_GET['act'].'.php')) {
+				require_once './main/pages/'.$_GET['act'].'.php';
+			} else {
+				require_once './main/errors/404.html';
+			}
+		// 파일 코드와 만료날짜 있으면 업로드 완료 페이지 호출
 		} else if (isset($_GET['filecode']) || isset($_GET['expdate'])) {
 			require_once './main/pages/checkuploaded.php';
+		// 에러 페이지 호출, 해당하는 페이지 없으면 404 호출
 		} else if (isset($_GET['error'])) {
 			if (file_exists('./main/errors/'.$_GET['error'].'.html')) {
 				require_once './main/errors/'.$_GET['error'].'.html';
 			} else {
 				require_once './main/errors/404.html';
 			}
+		
+		// act값 없으면 메인페이지 호출
 		} else {
 			require_once './main/pages/select_action.html';
 		}
 		
-		// download값에 따라 요청받은 파일 다운로드
+		// download값 있으면 파일 다운로드 실행
 		if (isset($_GET['download'])) {
 			header('Location: ./main/func/download_ok.php?filecode='.$_GET['download']);
 		}

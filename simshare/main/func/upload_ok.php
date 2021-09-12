@@ -1,14 +1,13 @@
 <?php 
-	// 서버에 파일 업로드를 처리하는 php 파일
-	
+
 	ini_set("memory_limit","256M");
 
-	// 파일에 부여할 랜덤 코드 생성 함수
+	// 파일에 부여할 랜덤 코드 생성
 	function randstring($length) {  
 		$characters  = "0123456789";  
 		$characters .= "abcdefghijklmnopqrstuvwxyz";  
 		$characters .= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
-		$characters .= "_";  
+		//$characters .= "_";  
 		$string_generated = "";  
 		$nmr_loops = $length;  
 		while ($nmr_loops--) {  
@@ -128,7 +127,7 @@
 				$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
 				$content_encrypted = openssl_encrypt($file_contents, 'aes-256-cbc', $userpasswd, OPENSSL_RAW_DATA, $iv);
 			} else if ((int)$selected_alg == 2) {
-				// rsa 추가 예정
+				
 			}
 			$fp = fopen($filecreated, 'r+');
 			fwrite($fp, $content_encrypted);

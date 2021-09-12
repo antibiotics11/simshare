@@ -58,7 +58,7 @@
 			<td>
 			<select name = "encrypt" id = "encrypt" onChange="showinputpasswd(this.value)">
 				<option value = "1"> To AES-256 </option>
-				<!-- <option value = "2"> To RSA </option> -->
+				<option value = "2"> To RSA </option>
 				<option value = "0"> None (Not Recommended)</option>
 			</select> 
 			</td>
