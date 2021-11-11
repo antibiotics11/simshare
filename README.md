@@ -6,7 +6,7 @@
 
 You can upload a file up to 200mb to the simshare server, and download or share it with others.
 
-<a href = "https://simshare.xyz">https://simshare.xyz</a><br>
+<s><a href = "https://simshare.xyz">https://simshare.xyz</a></s><br>
 
 It was initially developed as part of web programming project at the <a href = "https://www.kunsan.ac.kr/en/index.kunsan">Kunsan National University</a>, is now being developed as a personal project.
 <br>* Please refer to <a href = "https://github.com/antibiotics11/simshare/blob/main/README.old.md">README.old.md</a>
